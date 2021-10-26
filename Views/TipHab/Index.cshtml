@@ -1,27 +1,50 @@
-﻿@model hotel_santa_ursula_II.Models.TipoHabitacion
+﻿@model IEnumerable<hotel_santa_ursula_II.Models.TipoHabitacion>
 @{
-    ViewData["Title"] = "Registrar Tipo de habitación";
+    var count = 1;
 }
+<div class="container">
+    <br>
+    <h2>Tipos de Habitaciones</h2>
+    <a class="btn btn-success float-right" role="button" asp-action="Crear">Registrar</a><br>
+    <br><table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                    <th scope="col">
+                        №
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.nomtiphabitacion)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.desctiphab)
+                    </th>
+                    
+            </tr>
+        </thead>
 
-<div class="text-center">
-    <h6 class="display-4">Crear tipo de habitación</h6>
-    <form  asp-controller="TipoHabitacion" asp-action="Registrar">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <!-- actualizar la db para que lea las lineas de abajo -->
+            <tbody>
 
-            <div class="form-group text-left">
-                <label asp-for="nomtiphabitacion" class="control-label"></label>
-                <input asp-for="nomtiphabitacion" class="form-control rounded-pill"> 
-                <span asp-validation-for="nomtiphabitacion" class="text-danger"></span>
-            </div><br>
-
-            <div class="form-group text-left">
-                <label asp-for="desctiphab" class="control-label"></label>
-                <input asp-for="desctiphab" class="form-control rounded-pill"> 
-                <span asp-validation-for="desctiphab" class="text-danger"></span>
-            </div><br>
-
-            <div class="form-group">
-                <button class="btn btn-primary btn-block rounded-pill">Crear Nuevo</button>
-            </div><br>
-        </form>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">
+                    @count
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomtiphabitacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.desctiphab)
+                </td>
+                
+                <th scope="row">
+                    <a asp-action="Editar" asp-route-id="@item.id" class="btn btn-success active" role="button">Editar</a> 
+                    <a asp-action="Eliminar" asp-route-id="@item.id" class="btn btn-success active" role="button" onclick="return confirm('Esta seguro que desea eliminar? : @item.id ')">Eliminar</a>
+                </th>
+            </tr>
+            count++;
+        }        
+        </tbody> 
+    </table>
 </div>
