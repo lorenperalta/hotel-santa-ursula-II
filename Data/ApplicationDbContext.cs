@@ -12,5 +12,6 @@ namespace hotel_santa_ursula_II.Data
             : base(options)
         {
         }
+        
     }
 }
