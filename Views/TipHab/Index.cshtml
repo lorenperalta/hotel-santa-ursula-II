@@ -1,0 +1,50 @@
+﻿@model IEnumerable<hotel_santa_ursula_II.Models.TipoHabitacion>
+@{
+    var count = 1;
+}
+<div class="container">
+    <br>
+    <h2>Tipos de Habitaciones</h2>
+    <a class="btn btn-success float-right" role="button" asp-action="Crear">Registrar</a><br>
+    <br><table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                    <th scope="col">
+                        №
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.nomtiphabitacion)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.desctiphab)
+                    </th>
+                    
+            </tr>
+        </thead>
+
+        <!-- actualizar la db para que lea las lineas de abajo -->
+            <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">
+                    @count
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomtiphabitacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.desctiphab)
+                </td>
+                
+                <th scope="row">
+                    <a asp-action="Editar" asp-route-id="@item.id" class="btn btn-success active" role="button">Editar</a> 
+                    <a asp-action="Eliminar" asp-route-id="@item.id" class="btn btn-success active" role="button" onclick="return confirm('Esta seguro que desea eliminar? : @item.id ')">Eliminar</a>
+                </th>
+            </tr>
+            count++;
+        }        
+        </tbody> 
+    </table>
+</div>
