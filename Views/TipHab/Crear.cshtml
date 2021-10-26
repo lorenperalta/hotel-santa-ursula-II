@@ -5,23 +5,23 @@
 
 <div class="text-center">
     <h6 class="display-4">Crear tipo de habitación</h6>
-    <form  asp-controller="TipoHabitacion" asp-action="Registrar">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form asp-controller="TipHab" asp-action="Registrar">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group text-left">
-                <label asp-for="nomtiphabitacion" class="control-label"></label>
-                <input asp-for="nomtiphabitacion" class="form-control rounded-pill"> 
-                <span asp-validation-for="nomtiphabitacion" class="text-danger"></span>
-            </div><br>
+        <div class="form-group text-left">
+            <label asp-for="nomtiphabitacion" class="control-label"></label>
+            <input asp-for="nomtiphabitacion" class="form-control rounded-pill">
+            <span asp-validation-for="nomtiphabitacion" class="text-danger"></span>
+        </div><br>
 
-            <div class="form-group text-left">
-                <label asp-for="desctiphab" class="control-label"></label>
-                <input asp-for="desctiphab" class="form-control rounded-pill"> 
-                <span asp-validation-for="desctiphab" class="text-danger"></span>
-            </div><br>
+        <div class="form-group text-left">
+            <label asp-for="desctiphab" class="control-label"></label>
+            <input asp-for="desctiphab" class="form-control rounded-pill">
+            <span asp-validation-for="desctiphab" class="text-danger"></span>
+        </div><br>
 
-            <div class="form-group">
-                <button class="btn btn-primary btn-block rounded-pill">Crear Nuevo</button>
-            </div><br>
-        </form>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block rounded-pill">Crear Nuevo</button>
+        </div><br>
+    </form>
 </div>

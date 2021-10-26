@@ -24,29 +24,29 @@ namespace hotel_santa_ursula_II.Controllers
 
         public IActionResult Index()
         {
-           // var lista = _context.Tipo_hab.ToList();
-           //return View(lista);
-            return View();
+            var lista = _context.Tipo_hab.ToList();
+            return View(lista);
+            // return View();
         }
         public IActionResult Crear()
         {
-           // var lista = _context.Tipo_hab.ToList();
+            // var lista = _context.Tipo_hab.ToList();
             return View();
         }
         public IActionResult Editar()
         {
-           // var lista = _context.Tipo_hab.ToList();
+            // var lista = _context.Tipo_hab.ToList();
             return View();
         }
         public IActionResult Eliminar()
         {
-           // var lista = _context.Tipo_hab.ToList();
+            // var lista = _context.Tipo_hab.ToList();
             return View();
         }
 
 
 
-      /*  [HttpPost]
+        [HttpPost]
         public IActionResult Registrar(TipoHabitacion objTipHab)
         {
             if (ModelState.IsValid)
@@ -60,11 +60,6 @@ namespace hotel_santa_ursula_II.Controllers
         }
 
         public IActionResult ConfirmacionUpdate()
-        {
-            return View();
-        }
-
-        public IActionResult Crear()
         {
             return View();
         }
@@ -87,7 +82,7 @@ namespace hotel_santa_ursula_II.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Editar(int id, [Bind("id,nomtiphabitacion,desctiphab")] TipoHabitacion objTipHab)
-        {   
+        {
             if (id != objTipHab.id)
             {
                 return NotFound();
@@ -117,6 +112,6 @@ namespace hotel_santa_ursula_II.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        */
+
     }
 }
