@@ -13,6 +13,5 @@ namespace hotel_santa_ursula_II.Data
         {
         }
         //public DbSet<hotel_santa_ursula_II.Models.TipoHabitacion> Tipo_hab { get; set; }
-
     }
 }
