@@ -15,7 +15,7 @@ namespace hotel_santa_ursula_II.Controllers
         private readonly ILogger<Usuario> _logger;
         private readonly ApplicationDbContext _context;
 
-        public Usuario(ILogger<Usuario> logger , ApplicationDbContext context)
+        public Usuario(ILogger<Usuario> logger, ApplicationDbContext context)
         {
             _logger = logger;
 
@@ -28,16 +28,16 @@ namespace hotel_santa_ursula_II.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registrar(Usuario objMuestra)
+        public IActionResult Registrar(Models.Usuario objMuestra)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(objMuestra);
                 _context.SaveChanges();
-               return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
 
             }
-           return View("Index", objMuestra);
+            return View("Index", objMuestra);
         }
     }
 }

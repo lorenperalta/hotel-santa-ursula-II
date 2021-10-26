@@ -33,17 +33,6 @@ namespace hotel_santa_ursula_II.Controllers
             // var lista = _context.Tipo_hab.ToList();
             return View();
         }
-        public IActionResult Editar()
-        {
-            // var lista = _context.Tipo_hab.ToList();
-            return View();
-        }
-        public IActionResult Eliminar()
-        {
-            // var lista = _context.Tipo_hab.ToList();
-            return View();
-        }
-
 
 
         [HttpPost]
