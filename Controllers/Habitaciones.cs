@@ -26,9 +26,10 @@ namespace hotel_santa_ursula_II.Controllers
         {
             return View();
         }
-         public IActionResult Mostrar()
+        public IActionResult Mostrar()
         {
-            return View();
+            var lista = _context.habitaciones.ToList();
+            return View(lista);
         }
 
         [HttpPost]
