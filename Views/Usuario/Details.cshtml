@@ -1,0 +1,41 @@
+@model hotel_santa_ursula_II.Models.Usuario
+@{
+    ViewData["Title"] = "Usuario";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="col-lg-6" style="float:none;margin:auto;">
+    <div class="alert alert-success" role="alert">@ViewData["Message"]</div>
+    <h3>Editando contacto</h3>
+    <form asp-controller="Usuario" asp-action="Editar">
+        <input type="hidden" asp-for="id" />
+
+        <label asp-for="razonsocial" class="form-label">Razón Social</label>
+        <input asp-for="razonsocial" class="form-control rounded-pill bg-secondary text-white" />
+        <br>
+        <label asp-for="dni" class="control-label">DNI</label>
+        <input asp-for="dni" class="form-control rounded-pill bg-secondary text-white" />
+        <br>
+        <label asp-for="rol" class="control-label">Rol</label>
+        <input asp-for="rol" class="form-control rounded-pill bg-secondary text-white" />
+        <br>
+        <label asp-for="direccion" class="control-label">Correo Electrónico</label>
+        <input asp-for="direccion" class="form-control rounded-pill bg-secondary text-white" />
+        <br>
+        <label asp-for="telefono" class="control-label">Teléfono</label>
+        <input asp-for="telefono" class="form-control rounded-pill bg-secondary text-white" />
+        <br>
+        <label asp-for="correo" class="control-label">Correo</label>
+        <input asp-for="correo" class="form-control rounded-pill bg-secondary text-white" />
+        <br>
+        <label asp-for="password" class="control-label">Password</label>
+        <input asp-for="password" class="form-control rounded-pill bg-secondary text-white" />
+        <br>
+        <div class="form-group">
+            <button type="submit" class="btn rounded-pill btn-dark btn-block">Actualizar</button> 
+        </div>              
+    </form>
+    <div>
+        <a asp-action="Index">Regresar</a>
+    </div>
+</div>
