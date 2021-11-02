@@ -31,6 +31,51 @@ namespace hotel_santa_ursula_II.Controllers
             var lista = _context.habitaciones.ToList();
             return View(lista);
         }
+        public IActionResult Listar()
+        {
+            var lista = _context.habitaciones.ToList();
+            return View(lista);
+            // return View();
+        }
+         public async Task<IActionResult> Editar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var vtiphab = await _context.habitaciones.FindAsync(id);
+            if (vtiphab == null)
+            {
+                return NotFound();
+            }
+            return View(vtiphab);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Editar(int id, [Bind("id,idtipo,numero,precio,descripcion,nivel,disponible,Imagen")] Models.Habitaciones Hab)
+        {
+            if (id != Hab.id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(Hab);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction("Listar");
+        }
+
 
         [HttpPost]
         public IActionResult Registrar(Models.Habitaciones objMuestra)
@@ -39,10 +84,18 @@ namespace hotel_santa_ursula_II.Controllers
             {
                 _context.Add(objMuestra);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Mostrar");
 
             }
             return View("Index", objMuestra);
         }
+         public IActionResult Eliminar(int? id)
+        {
+            var etiphab = _context.habitaciones.Find(id);
+            _context.habitaciones.Remove(etiphab);
+            _context.SaveChanges();
+            return RedirectToAction("Listar");
+        }
+
     }
 }
