@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using hotel_santa_ursula_II.Data;
 
-namespace hotel_santa_ursula_II.Data.Migrations
+namespace hotel_santa_ursula_II.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -261,6 +261,42 @@ namespace hotel_santa_ursula_II.Data.Migrations
                     b.ToTable("T_habitaciones");
                 });
 
+            modelBuilder.Entity("hotel_santa_ursula_II.Models.Reservas", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("CantHuespedes")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DiaEntrada")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("DiaSalida")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Estado")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Precio")
+                        .HasColumnType("double precision");
+
+                    b.Property<int?>("TipHabitacionid")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TipHabitacionid");
+
+                    b.ToTable("T_reserva");
+                });
+
             modelBuilder.Entity("hotel_santa_ursula_II.Models.TipoHabitacion", b =>
                 {
                     b.Property<int>("id")
@@ -375,6 +411,15 @@ namespace hotel_santa_ursula_II.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("hotel_santa_ursula_II.Models.Reservas", b =>
+                {
+                    b.HasOne("hotel_santa_ursula_II.Models.TipoHabitacion", "TipHabitacion")
+                        .WithMany()
+                        .HasForeignKey("TipHabitacionid");
+
+                    b.Navigation("TipHabitacion");
                 });
 #pragma warning restore 612, 618
         }

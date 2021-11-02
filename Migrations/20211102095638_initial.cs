@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace hotel_santa_ursula_II.Data.Migrations
+namespace hotel_santa_ursula_II.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -205,6 +205,31 @@ namespace hotel_santa_ursula_II.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "T_reserva",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserID = table.Column<string>(type: "text", nullable: true),
+                    TipHabitacionid = table.Column<int>(type: "integer", nullable: true),
+                    CantHuespedes = table.Column<int>(type: "integer", nullable: false),
+                    DiaEntrada = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DiaSalida = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    Precio = table.Column<double>(type: "double precision", nullable: false),
+                    Estado = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_T_reserva", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_T_reserva_T_tipo_habitacion_TipHabitacionid",
+                        column: x => x.TipHabitacionid,
+                        principalTable: "T_tipo_habitacion",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -241,6 +266,11 @@ namespace hotel_santa_ursula_II.Data.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_T_reserva_TipHabitacionid",
+                table: "T_reserva",
+                column: "TipHabitacionid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -264,7 +294,7 @@ namespace hotel_santa_ursula_II.Data.Migrations
                 name: "T_habitaciones");
 
             migrationBuilder.DropTable(
-                name: "T_tipo_habitacion");
+                name: "T_reserva");
 
             migrationBuilder.DropTable(
                 name: "T_usuarios");
@@ -274,6 +304,9 @@ namespace hotel_santa_ursula_II.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "T_tipo_habitacion");
         }
     }
 }
