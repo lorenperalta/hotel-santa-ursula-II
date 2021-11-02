@@ -14,7 +14,7 @@ namespace hotel_santa_ursula_II.Models
         [Column("id")]
         public int Id { get; set; }
         public String UserID {get; set;}
-        public TipoHabitacion TipHabitacion {get; set;}
+        public Habitaciones Habitaciones {get; set;}
         public int CantHuespedes{get; set;}
         public DateTime DiaEntrada{get; set;}
         public DateTime DiaSalida{get; set;}

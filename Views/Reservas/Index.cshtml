@@ -17,7 +17,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => listReservas.FirstOrDefault().TipHabitacion.nomtiphabitacion)
+                @Html.DisplayNameFor(model => listReservas.FirstOrDefault().Habitaciones.numero)
             </th>
             <th>
                 @Html.DisplayNameFor(model => listReservas.FirstOrDefault().CantHuespedes)
@@ -38,7 +38,7 @@
 @foreach (Reservas item in Model.reservas) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TipHabitacion.nomtiphabitacion)
+                @Html.DisplayFor(modelItem => item.Habitaciones.numero)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CantHuespedes)

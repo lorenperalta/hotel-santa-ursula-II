@@ -29,7 +29,7 @@ namespace hotel_santa_ursula_II.Controllers
             var userID = _userManager.GetUserName(User);
             var items = from o in _context.DataReservas select o;
             items = items.
-                Include(r => r.TipHabitacion).
+                Include(r => r.Habitaciones).
                 Where(s => s.UserID.Equals(userID) && s.Estado.Equals("PENDIENTE"));
 
             var elements = await items.ToListAsync();
