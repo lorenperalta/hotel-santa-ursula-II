@@ -15,5 +15,6 @@ namespace hotel_santa_ursula_II.Data
         public DbSet<hotel_santa_ursula_II.Models.TipoHabitacion> Tipo_hab { get; set; }
         public DbSet<hotel_santa_ursula_II.Models.Habitaciones> habitaciones { get; set; }
         public DbSet<hotel_santa_ursula_II.Models.Usuario> usuario { get; set; }
+        public DbSet<hotel_santa_ursula_II.Models.Reclamaciones> reclamo { get; set; }
     }
 }
