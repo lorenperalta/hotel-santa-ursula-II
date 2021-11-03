@@ -41,12 +41,20 @@ namespace hotel_santa_ursula_II.Controllers
             return View(objProduct);
         }
 
-        public ActionResult Agregar()
-    {
-        
-            return RedirectToAction("Seleccionar", "Reservas");
-        
-    }
+        public async Task<IActionResult> Seleccionar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var vtiphab = await _context.habitaciones.FindAsync(id);
+            if (vtiphab == null)
+            {
+                return NotFound();
+            }
+            return RedirectToAction("Seleccionar","Reservas",new {id});
+        }
 
         [HttpPost]
         public IActionResult Registrar(Models.Habitaciones objMuestra)

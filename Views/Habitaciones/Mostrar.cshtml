@@ -23,8 +23,7 @@
                 <div class="card-body">
                   <h5 class="card-title">@Html.DisplayFor(modelItem => item.numero)</h5>
                   <p class="card-text">@Html.DisplayFor(modelItem => item.precio)</p>
-                  <a class="btn btn-dark" asp-action="Agregar" asp-route-id="@item.id">Agregar</a>
-                  <a class="btn btn-danger" asp-action="Detalles" asp-route-id="@item.id">Ver</a>
+                  <a asp-action="Seleccionar" asp-route-id="@item.id" class="btn btn-success active" role="button">Seleccionar</a> 
                 </div>
               </div>
             </div>

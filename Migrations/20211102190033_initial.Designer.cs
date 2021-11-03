@@ -10,7 +10,7 @@ using hotel_santa_ursula_II.Data;
 namespace hotel_santa_ursula_II.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211102180444_initial")]
+    [Migration("20211102190033_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
