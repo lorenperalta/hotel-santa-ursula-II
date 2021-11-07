@@ -1,8 +1,63 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
+<!DOCTYPE html>
+<html lang="es">
+  <head>  
+   <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>
+      
+  </head>
+<body>
+<!--Inicio Banner-->
+<div class="hero-wrap hero-wrap-2" style="background-image: url('images/banner1.jpg'); background-attachment:fixed; height: 500px;">
+      <div class="overlay" style="height: 500px;" ></div>
+        <div class="container">
+          <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true" style="height: 400px;">
+           <div class="col-md-8 ftco-animate text-center">         
+            </div>
+          </div>
+       </div>
+</div>    
+<!--Fin Banner-->
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <section class="ftco-section">
+    	<div class="container">
+    		<div class="row">
+          <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services p-3 py-4 d-block text-center">
+              <div class="icon d-flex justify-content-center align-items-center mb-3"><i class="iconohome fas fa-hotel"></i></div>
+              <div class="media-body px-3">
+                <h3 class="heading">Alojamiento</h3>
+                <p style="color:#1A237E ">Brindamos un servicios de hospedaje y alojamiento de calidad para nuestros clientes.</p>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services p-3 py-4 d-block text-center">
+              <div class="icon d-flex justify-content-center align-items-center mb-3"><i class="iconohome fas fa-concierge-bell"></i></div>
+              <div class="media-body px-3">
+                <h3 class="heading">Servicio y amabilidad</h3>
+                <p style="color:#1A237E" >Brindamos la mejor atención y hospitalidad que cada uno de nuestros clientes merece.</p>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services p-3 py-4 d-block text-center">
+              <div class="icon d-flex justify-content-center align-items-center mb-3"><i class="iconohome fas fa-bed"></i></div>
+              <div class="media-body px-3">
+                <h3 class="heading">Comodidad</h3>
+                <p style="color:#1A237E">Brindamos comodidad para que la experiencia de nuestros clientes sea reconfortante.</p>
+              </div>
+            </div>    
+          </div>
+        </div>
+    	</div>
+    </section>
+
+<div>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Reclamaciones" asp-action="Crear">  <img src="~/images/libro_reclamaciones.jpg" alt=""> </a>
+          
+        </div>
+ </body>
+ 
+</html>

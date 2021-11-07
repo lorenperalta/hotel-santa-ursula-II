@@ -2,18 +2,16 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using hotel_santa_ursula_II.Data;
 
-namespace hotel_santa_ursula_II.Data.Migrations
+namespace hotel_santa_ursula_II.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211026171255_CreateIdentitySchema")]
-    partial class CreateIdentitySchema
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -219,6 +217,35 @@ namespace hotel_santa_ursula_II.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("hotel_santa_ursula_II.Models.Detallepedido", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Habitacionesid")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("numeric");
+
+                    b.Property<int?>("pedidoID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("Habitacionesid");
+
+                    b.HasIndex("pedidoID");
+
+                    b.ToTable("t_detalle_pedido");
+                });
+
             modelBuilder.Entity("hotel_santa_ursula_II.Models.Habitaciones", b =>
                 {
                     b.Property<int>("id")
@@ -261,6 +288,97 @@ namespace hotel_santa_ursula_II.Data.Migrations
                     b.HasKey("id");
 
                     b.ToTable("T_habitaciones");
+                });
+
+            modelBuilder.Entity("hotel_santa_ursula_II.Models.Pago", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("FechaPago")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<decimal>("MontoTotal")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("NombreTarjeta")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NumeroTarjeta")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_pago");
+                });
+
+            modelBuilder.Entity("hotel_santa_ursula_II.Models.Pedido", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Estado")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("pagoId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("pagoId");
+
+                    b.ToTable("T_pedido");
+                });
+
+            modelBuilder.Entity("hotel_santa_ursula_II.Models.Reservas", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("CantHuespedes")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DiaEntrada")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("DiaSalida")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Estado")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("Habitacionesid")
+                        .HasColumnType("integer");
+
+                    b.Property<double>("Precio")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Habitacionesid");
+
+                    b.ToTable("T_reserva");
                 });
 
             modelBuilder.Entity("hotel_santa_ursula_II.Models.TipoHabitacion", b =>
@@ -377,6 +495,39 @@ namespace hotel_santa_ursula_II.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("hotel_santa_ursula_II.Models.Detallepedido", b =>
+                {
+                    b.HasOne("hotel_santa_ursula_II.Models.Habitaciones", "Habitaciones")
+                        .WithMany()
+                        .HasForeignKey("Habitacionesid");
+
+                    b.HasOne("hotel_santa_ursula_II.Models.Pedido", "pedido")
+                        .WithMany()
+                        .HasForeignKey("pedidoID");
+
+                    b.Navigation("Habitaciones");
+
+                    b.Navigation("pedido");
+                });
+
+            modelBuilder.Entity("hotel_santa_ursula_II.Models.Pedido", b =>
+                {
+                    b.HasOne("hotel_santa_ursula_II.Models.Pago", "pago")
+                        .WithMany()
+                        .HasForeignKey("pagoId");
+
+                    b.Navigation("pago");
+                });
+
+            modelBuilder.Entity("hotel_santa_ursula_II.Models.Reservas", b =>
+                {
+                    b.HasOne("hotel_santa_ursula_II.Models.Habitaciones", "Habitaciones")
+                        .WithMany()
+                        .HasForeignKey("Habitacionesid");
+
+                    b.Navigation("Habitaciones");
                 });
 #pragma warning restore 612, 618
         }
