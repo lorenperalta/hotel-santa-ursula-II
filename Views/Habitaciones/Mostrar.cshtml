@@ -23,8 +23,9 @@
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">@Html.DisplayFor(modelItem => item.numero)</h5>
-                  <p class="card-text">@Html.DisplayFor(modelItem => item.precio)</p>
-                  <a asp-action="Seleccionar" asp-route-id="@item.id" class="btn btn-success active" role="button">Seleccionar</a> 
+                  @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.descripcion))
+                
+                  <a asp-action="Seleccionar" asp-route-id="@item.id" class="btn btn-success active" role="button">S/ @Html.DisplayFor(modelItem => item.precio) Reservar</a> 
 
                 </div>
               </div>

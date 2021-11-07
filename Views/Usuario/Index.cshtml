@@ -3,51 +3,72 @@
     ViewData["Title"] = "Usuario";
 }
 <div class="container">
-    <div class="col-md-4">
-
-        <h1 class="display-4">Usuarios</h1><br>
-
-        <form  asp-controller="Usuario" asp-action="Registrar">
+    
+<Center>
+        
+        <div class="card bg-info">
+  
+  <div class="card-body">
+    <h5 class="card-title">Usuarios</h5>
+    <form  asp-controller="Usuario" asp-action="Registrar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group text-left">
+         <div class="row align-items-center">
+            <div class="form-group text-left col-sm">
+                
                 <label asp-for="razonsocial" class="control-label"></label>
                 <input asp-for="razonsocial" class="form-control"> 
                 <span asp-validation-for="razonsocial" class="text-danger"></span>
             </div>
-            <div class="form-group text-left">
+            <div class="form-group  text-left col-sm">
                 <label asp-for="dni" class="control-label"></label>
                 <input asp-for="dni" class="form-control"> 
                 <span asp-validation-for="dni" class="text-danger"></span>
             </div>
-            <div class="form-group text-left">
-                <label asp-for="rol" class="control-label"></label>
-                <input asp-for="rol" class="form-control"> 
-                <span asp-validation-for="rol" class="text-danger"></span>
+            </div>
+             <div class="row align-items-center">
+            <div class="form-group text-left col-sm">
+            <label asp-for="rol" class="control-label"></label>
+            <select asp-for="rol" class="form-control" aria-label="Default select example">
+                <option value="1">Administrador</option>
+                <option value="2">Recepcionista</option>
+                <option value="3">Cliente</option>
+            </select>
+            <span asp-validation-for="rol" class="text-danger"></span>
             </div>
 
-            <div class="form-group text-left">
+            <div class="form-group text-left col-sm">
                 <label asp-for="direccion" class="control-label"></label>
                 <input asp-for="direccion" class="form-control"> 
                 <span asp-validation-for="direccion" class="text-danger"></span>
             </div>
-             <div class="form-group text-left">
+            </div>
+             <div class="row align-items-center">
+             <div class="form-group text-left col-sm">
                 <label asp-for="telefono" class="control-label"></label>
                 <input asp-for="telefono" class="form-control"> 
                 <span asp-validation-for="telefono" class="text-danger"></span>
             </div>
-             <div class="form-group text-left">
+             <div class="form-group text-left col-sm">
                 <label asp-for="correo" class="control-label"></label>
                 <input asp-for="correo" class="form-control"> 
                 <span asp-validation-for="correo" class="text-danger"></span>
             </div>
-            <div class="form-group text-left">
+            </div>
+             <div class="row align-items-center">
+            <div class="form-group text-left col-sm">
                 <label asp-for="password" class="control-label"></label>
                 <input asp-for="password" class="form-control"> 
                 <span asp-validation-for="password" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm">
                 <button class="btn btn-success">Registrar</button>
             </div>
+            </div>
         </form>
-    </div>
+    
+  </div>
+</div>
+</Center>
+        
+    
 </div>

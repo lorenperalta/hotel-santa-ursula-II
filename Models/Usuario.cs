@@ -39,7 +39,7 @@ namespace hotel_santa_ursula_II.Models
         public string correo { get; set; }
         [Display(Name = "Contraseña: ")]
         [Column("password")]
-        //[password]
+       [DataType(DataType.Password)]
         public string password { get; set; }
     }
 }

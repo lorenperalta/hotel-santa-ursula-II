@@ -27,10 +27,11 @@ namespace hotel_santa_ursula_II.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Mostrar()
+        public IActionResult Mostrar()
         {
+             var resultado=_context.habitaciones.Where(x=>x.disponible==true).ToList();
             var habitacionesm = from o in _context.habitaciones select o;
-            return View(await habitacionesm.ToListAsync());
+            return View(resultado);
         }
         public async Task<IActionResult> Detalles(int? id)
         {
@@ -43,18 +44,24 @@ namespace hotel_santa_ursula_II.Controllers
 
         public async Task<IActionResult> Seleccionar(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
+               var userID = _userManager.GetUserName(User);
+            if(userID == null){
+                ViewData["Message"] = "Por favor debe loguearse antes de agregar un producto";
+                List<Habitaciones> productos = new List<Habitaciones>();
+                return  View("Index",productos);
+            }else{
+                var producto = await _context.habitaciones.FindAsync(id);
+                Carrito proforma = new Carrito();
+                proforma.habitacion = producto;// revisar exactamente esto
+                proforma.Precio = producto.precio;
+                proforma.Quantity = 1;
+                proforma.UserID = userID;
+                _context.Add(proforma);
+                await _context.SaveChangesAsync();
+                return  RedirectToAction("Index","Carrito");
             }
-
-            var vtiphab = await _context.habitaciones.FindAsync(id);
-            if (vtiphab == null)
-            {
-                return NotFound();
-            }
-            return RedirectToAction("Seleccionar","Reservas",new {id});
         }
+        
         public IActionResult Listar()
         {
             var lista = _context.habitaciones.ToList();

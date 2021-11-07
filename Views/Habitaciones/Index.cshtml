@@ -3,51 +3,67 @@
     ViewData["Title"] = "Habitaciones";
 }
 <div class="container">
-    <div class="col-md-4">
-
-        <h1 class="display-4">Habitaciones</h1><br>
+    <Center>
+        
+        <div class="card bg-info">
+  
+  <div class="card-body">
+    <h5 class="card-title">Administrar habitaciones</h5>
 
         <form asp-controller="Habitaciones" asp-action="Registrar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group text-left">
+            <div class="row align-items-center">
+            <div class="form-group text-left col-sm">
                 <label asp-for="idtipo" class="control-label"></label>
                 <input asp-for="idtipo" class="form-control">
                 <span asp-validation-for="idtipo" class="text-danger"></span>
             </div>
-            <div class="form-group text-left">
+            <div class="form-group text-left col-sm">
                 <label asp-for="numero" class="control-label"></label>
                 <input asp-for="numero" class="form-control">
                 <span asp-validation-for="numero" class="text-danger"></span>
             </div>
-            <div class="form-group text-left">
+            </div>
+            <div class="row align-items-center">
+            <div class="form-group text-left col-sm">
                 <label asp-for="precio" class="control-label"></label>
                 <input asp-for="precio" class="form-control">
                 <span asp-validation-for="precio" class="text-danger"></span>
             </div>
-
-            <div class="form-group text-left">
-                <label asp-for="descripcion" class="control-label"></label>
-                <input asp-for="descripcion" class="form-control">
-                <span asp-validation-for="descripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group text-left">
+        <div class="form-group text-left col-sm">
                 <label asp-for="nivel" class="control-label"></label>
-                <input asp-for="nivel" class="form-control">
+                <select asp-for="nivel" class="form-control" aria-label="Default select example">
+                <option value="1">Primero</option>
+                <option value="2">Segundo</option>
+                <option value="3">Tercero</option>
+            </select>
                 <span asp-validation-for="nivel" class="text-danger"></span>
             </div>
-            <div class="form-group text-left">
+            </div>
+            <div class="row align-items-center">
+            <div class="form-group text-left col-sm">
+                <label asp-for="descripcion" class="control-label"></label>
+                <textarea name="descripcion" id="ckeditor" cols="30" rows="10" class="ckeditor" value=""> </textarea>
+                <span asp-validation-for="descripcion" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="row align-items-center">
+            <div class="form-group text-left col-sm">
                 <label asp-for="disponible" class="control-label"></label>
                 <input asp-for="disponible" class="form-control">
                 <span asp-validation-for="disponible" class="text-danger"></span>
             </div>
-            <div class="form-group text-left">
+            <div class="form-group text-left col-sm">
                 <label asp-for="Imagen" class="control-label"></label>
                 <input asp-for="Imagen" class="form-control">
                 <span asp-validation-for="Imagen" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm">
                 <button class="btn btn-success">Registrar</button>
+            </div>
             </div>
         </form>
     </div>
+</div>
+</Center>
 </div>

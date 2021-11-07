@@ -1,0 +1,50 @@
+@model dynamic;
+@using System.Collections.Generic;
+
+@{
+    ViewData["Title"] = "Carrito";
+    IEnumerable<hotel_santa_ursula_II.Models.Carrito> listProformas = new List<Carrito>();
+    listProformas = @Model.proformas;
+    Double montoTotal = @Model.montoTotal;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<a class="btn btn-primary" asp-controller="Pago" 
+       asp-action="Create" asp-route-monto="@montoTotal">Pagar</a><p>Total S/. @montoTotal</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => listProformas.FirstOrDefault().habitacion.numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => listProformas.FirstOrDefault().Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => listProformas.FirstOrDefault().Precio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (Carrito item in Model.proformas) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.habitacion.numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

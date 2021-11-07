@@ -22,7 +22,10 @@ namespace hotel_santa_ursula_II.Controllers
             _context = context;
             _userManager = userManager;
         }
-
+        public IActionResult Listar(){
+        var lista = _context.DataPago.ToList();
+            return View(lista);
+}
         public IActionResult Create(Decimal monto)
         {
             Pago pago = new Pago();
