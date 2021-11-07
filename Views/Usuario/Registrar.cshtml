@@ -1,0 +1,57 @@
+@model hotel_santa_ursula_II.Models.Usuario
+@{
+    ViewData["Title"] = "Usuario";
+}
+<div class="container">
+    <div class="col-md-4">
+
+        <h1 class="display-4">Registro mi Perfil</h1><br>
+
+        <form  asp-controller="Usuario" asp-action="Registrar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group text-left">
+                <label asp-for="razonsocial" class="control-label"></label>
+                <input asp-for="razonsocial" class="form-control rounded-pill bg-secondary text-white"> 
+                <span asp-validation-for="razonsocial" class="text-danger"></span>
+            </div>
+            <div class="form-group text-left">
+                <label asp-for="dni" class="control-label"></label>
+                <input asp-for="dni" class="form-control rounded-pill bg-secondary text-white"> 
+                <span asp-validation-for="dni" class="text-danger"></span>
+            </div>
+            <div class="form-group text-left">
+                <label asp-for="rol" class="control-label"></label>
+                <input asp-for="rol" class="form-control rounded-pill bg-secondary text-white"> 
+                <span asp-validation-for="rol" class="text-danger"></span>
+            </div>
+
+            <div class="form-group text-left">
+                <label asp-for="direccion" class="control-label"></label>
+                <input asp-for="direccion" class="form-control rounded-pill bg-secondary text-white"> 
+                <span asp-validation-for="direccion" class="text-danger"></span>
+            </div>
+             <div class="form-group text-left">
+                <label asp-for="telefono" class="control-label"></label>
+                <input asp-for="telefono" class="form-control rounded-pill bg-secondary text-white"> 
+                <span asp-validation-for="telefono" class="text-danger"></span>
+            </div>
+             <div class="form-group text-left">
+                <label asp-for="correo" class="control-label"></label>
+                <input asp-for="correo" class="form-control rounded-pill bg-secondary text-white"> 
+                <span asp-validation-for="correo" class="text-danger"></span>
+            </div>
+            <div class="form-group text-left">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control rounded-pill bg-secondary text-white"> 
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn rounded-pill btn-dark btn-block">Registrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+        <a asp-action="Index">Regresar</a>
+</div>
+
