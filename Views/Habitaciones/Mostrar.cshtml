@@ -4,6 +4,7 @@
     ViewData["Title"] = "Catalogo";  
 }
 
+
 <h1>@ViewData["Title"]</h1>
   <div class="container">
     <h1>@ViewData["Message"]</h1>
@@ -24,6 +25,7 @@
                   <h5 class="card-title">@Html.DisplayFor(modelItem => item.numero)</h5>
                   <p class="card-text">@Html.DisplayFor(modelItem => item.precio)</p>
                   <a asp-action="Seleccionar" asp-route-id="@item.id" class="btn btn-success active" role="button">Seleccionar</a> 
+
                 </div>
               </div>
             </div>
