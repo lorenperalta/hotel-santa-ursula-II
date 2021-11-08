@@ -49,9 +49,16 @@
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Habitaciones" asp-action="Listar">Listar</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Carrito" asp-action="Index">Reservas</a>
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Reservas
+                        </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Carrito" asp-action="Index">Pendiente</a></a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Pago" asp-action="Listar">Realizadas</a></li>
+                            </ul>
                         </li>
+                        
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
