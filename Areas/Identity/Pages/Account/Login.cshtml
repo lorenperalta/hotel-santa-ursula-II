@@ -1,0 +1,48 @@
+@page
+@model LoginModel
+
+<link rel="stylesheet" href="~/css/style.css">
+@{
+    ViewData["Title"] = "Iniciario Sesion";
+}
+
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in"><label hidden for="tab-1"
+            class="tab">Registrarse</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">Iniciar
+            Sesion</label>
+        <div class="login-form">
+            <div class="sign-up-htm">
+                <form id="account" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="group">
+                        <label asp-for="Input.Email" class="label"></label>
+                        <input asp-for="Input.Email" class="input" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="group">
+                        <label asp-for="Input.Password" class="label"></label>
+                        <input asp-for="Input.Password" class="input" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="Iniciar Sesion">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <a id="forgot-password" asp-page="./ForgotPassword">Olvidaste tu contraseña?</a>
+                    </div>
+                    <br>
+                    <div class="foot-lnk">
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registrar un nuevo usuario</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
