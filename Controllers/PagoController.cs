@@ -37,13 +37,17 @@ namespace hotel_santa_ursula_II.Controllers
         [HttpPost]
         public IActionResult Pagar(Pago pago)
         {
+            int a;
+            
             pago.FechaPago = DateTime.Now;
             _context.Add(pago);
 
-            var itemsReserva = from o in _context.DataReservas select o;
+            var itemsReserva = from o in _context.DataProforma select o;
             itemsReserva = itemsReserva.
-                Include(p => p.Habitaciones).
-                Where(s => s.UserID.Equals(pago.UserID) && s.Estado.Equals("PENDIENTE"));
+                Include(p => p.habitacion).
+                Where(s => s.UserID.Equals(pago.UserID) && s.Status.Equals("PENDIENTE"));
+
+                
 
             Pedido pedido = new Pedido();
             pedido.UserID = pago.UserID;
@@ -58,20 +62,31 @@ namespace hotel_santa_ursula_II.Controllers
                 Detallepedido detallePedido = new Detallepedido();
                 detallePedido.pedido=pedido;
                 detallePedido.Precio = Convert.ToInt32(item.Precio);
-                detallePedido.Habitaciones = item.Habitaciones;
-                detallePedido.Cantidad = item.CantHuespedes;
+                detallePedido.Habitaciones = item.habitacion;
+                a=item.habitacion.id;
+                detallePedido.Cantidad = 2;
                 itemsPedido.Add(detallePedido);
+                 var hab = from o in _context.habitaciones select o;
+            hab = hab.Where(n => n.id.Equals(a));
+            foreach (Models.Habitaciones j in hab.ToList())
+            {
+                j.disponible=false;
+            }
+            _context.UpdateRange(hab);
+           _context.SaveChanges();
             }
 
             _context.AddRange(itemsPedido);
 
-            foreach (Reservas p in itemsReserva.ToList())
+            foreach (Carrito p in itemsReserva.ToList())
             {
-                p.Estado="PROCESADO";
+                p.Status="PROCESADO";
             }
             _context.UpdateRange(itemsReserva);
 
             _context.SaveChanges();
+            
+            
 
             ViewData["Message"] = "El pago se ha registrado";
             return View("Create");

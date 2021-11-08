@@ -1,5 +1,6 @@
 @model hotel_santa_ursula_II.Models.Reservas
 
+
 @{
     ViewData["Title"] = "Editar";
 }
@@ -11,7 +12,7 @@
     
         <form asp-controller="Reservas" asp-action="Seleccionar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Id"/>
             <input type="hidden" asp-for="UserID" />
             <input type="hidden" asp-for="Precio" />
             

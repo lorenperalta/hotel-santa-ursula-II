@@ -58,7 +58,7 @@ namespace hotel_santa_ursula_II.Controllers
                 proforma.UserID = userID;
                 _context.Add(proforma);
                 await _context.SaveChangesAsync();
-                return  RedirectToAction("Index","Carrito");
+                return  RedirectToAction("Mostrar","Habitaciones");
             }
         }
         
@@ -81,6 +81,20 @@ namespace hotel_santa_ursula_II.Controllers
                 return NotFound();
             }
             return View(vtiphab);
+        }
+         public async Task<IActionResult> Detalle(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var vtiphab = await _context.habitaciones.FindAsync(id);
+            if (vtiphab == null)
+            {
+                return NotFound();
+            }
+            return  RedirectToAction("Seleccionar","Reservas", new {id});
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

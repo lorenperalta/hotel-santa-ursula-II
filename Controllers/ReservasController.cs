@@ -68,7 +68,7 @@ namespace hotel_santa_ursula_II.Controllers
                 return NotFound();
             }
 
-            var reserva = await _context.DataReservas.FindAsync(id);
+            var reserva = await _context.habitaciones.FindAsync(id);
             if (reserva== null)
             {
                 return NotFound();
