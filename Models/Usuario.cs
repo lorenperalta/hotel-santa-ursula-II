@@ -4,26 +4,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace hotel_santa_ursula_II.Models
 {
-    [Table("T_usuarios")]
+    [Table("t_clientes")]
     public class Usuario
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
         public int id { get; set; }
 
-        [Required(ErrorMessage = "Nombre y apellidos / Razon  social")]
-        [Display(Name = "Razon social/ nombre: ")]
-        [Column("razonsocial")]
-        public string razonsocial { get; set; }
+        [Display(Name = "Nombres: ")]
+        [Column("nombres")]
+        public string nombres { get; set; }
 
-        [Required(ErrorMessage = "Por favor ingrese un dni/RUC")]
+        [Display(Name = "Apellidos: ")]
+        [Column("apellidos")]
+        public string apellidos { get; set; }
+
+        [Required(ErrorMessage = "Por favor ingrese un DNI")]
         [Display(Name = "DNI: ")]
         [Column("dni")]
         public int dni { get; set; }
-
-        [Display(Name = "Cargo: ")]
-        [Column("rol")]
-        public int rol { get; set; }
 
         [Display(Name = "Direccion: ")]
         [Column("direccion")]
@@ -37,9 +36,6 @@ namespace hotel_santa_ursula_II.Models
         [Column("correo")]
         [EmailAddress]
         public string correo { get; set; }
-        [Display(Name = "Contraseña: ")]
-        [Column("password")]
-       [DataType(DataType.Password)]
-        public string password { get; set; }
+        
     }
 }

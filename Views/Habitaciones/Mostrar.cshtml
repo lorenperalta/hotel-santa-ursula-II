@@ -3,9 +3,28 @@
 @{
     ViewData["Title"] = "Catalogo";  
 }
+<head>  
+  <link rel="stylesheet" href="~/css/Formularios.css" />
+   <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>      
+</head>
 
+<body>
 
-<h1>@ViewData["Title"]</h1>
+   <!--Inicio Banner-->
+<div class="hero-wrap hero-wrap-2" style="background-image: url('../images/banner1.jpg'); background-attachment:fixed; height: 200px;">
+      <div class="overlay" style="height: 200px;" ></div>
+        <div class="container">
+          <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true" style="height: 200px;">
+           <div class="col-md-8 ftco-animate text-center">          
+             <h1 class="mb-3 bread">Habitaciones Disponibles</h1>
+            </div>
+          </div>
+       </div>
+</div>    
+<br>
+<br>
+<!--Fin Banner-->
+
   <div class="container">
     <h1>@ViewData["Message"]</h1>
     <div class="row">
@@ -25,7 +44,7 @@
                   <h5 class="card-title">@Html.DisplayFor(modelItem => item.numero)</h5>
                   @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.descripcion))
                 
-                  <a asp-action="Seleccionar" asp-route-id="@item.id" class="btn btn-success active" role="button">S/ @Html.DisplayFor(modelItem => item.precio) Reservar</a> 
+                  <a asp-action="Seleccionar" asp-route-id="@item.id" class="btn btn-success active button" role="button">S/ @Html.DisplayFor(modelItem => item.precio) Reservar</a> 
 
                 </div>
               </div>
@@ -36,3 +55,4 @@
       </div>
     </div>
   </div>
+  </body>

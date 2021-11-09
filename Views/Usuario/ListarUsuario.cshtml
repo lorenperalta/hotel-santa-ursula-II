@@ -1,12 +1,11 @@
-@model IEnumerable<hotel_santa_ursula_II.Models.Habitaciones>
+@model IEnumerable<hotel_santa_ursula_II.Models.Usuario>
 @{
-    var count = 1;
+     var count = 1;
 }
 <head>  
     <link rel="stylesheet" href="~/css/Formularios.css" />
    <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>      
 </head>
-
 <body>
     <!--Inicio Banner-->
 <div class="hero-wrap hero-wrap-2" style="background-image: url('../images/banner1.jpg'); background-attachment:fixed; height: 200px;">
@@ -14,7 +13,7 @@
         <div class="container">
           <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true" style="height: 200px;">
            <div class="col-md-8 ftco-animate text-center">          
-             <h1 class="mb-3 bread">Lista de Habitaciones</h1>
+             <h1 class="mb-3 bread">Lista de Clientes</h1>
             </div>
           </div>
        </div>
@@ -23,8 +22,7 @@
 <br>
 <!--Fin Banner-->
 <div class="container">
-    <p id="hora"></p>
-    <!--<a class="btn btn-success float-right" role="button" asp-action="index">Registrar</a><br>-->
+    <p id="razonsocial"></p>
     <br><table class="table table-hover">
         <thead class="thead-dark">
             <tr>
@@ -32,10 +30,22 @@
                         №
                     </th>
                     <th scope="col">
-                        @Html.DisplayNameFor(model => model.numero)
+                        @Html.DisplayNameFor(model => model.nombres)
                     </th>
                     <th scope="col">
-                        @Html.DisplayNameFor(model => model.precio)
+                        @Html.DisplayNameFor(model => model.apellidos)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.dni)
+                    </th>                    
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.direccion)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.telefono)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.correo)
                     </th>
                     <th></th>
             </tr>
@@ -51,11 +61,25 @@
                     @count
                 </th>
                 <td>
-                    @Html.DisplayFor(modelItem => item.numero)
+                    @Html.DisplayFor(modelItem => item.nombres)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.precio)
+                    @Html.DisplayFor(modelItem => item.apellidos)
                 </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.dni)
+                </td>                
+                <td>
+                    @Html.DisplayFor(modelItem => item.direccion)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.correo)
+                </td>                
                 
                 <th scope="row">
                     <a asp-action="Editar" asp-route-id="@item.id" class="btn btn-outline-success" role="button">Editar</a> 

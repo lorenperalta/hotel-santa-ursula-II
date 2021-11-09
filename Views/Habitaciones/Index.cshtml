@@ -2,37 +2,52 @@
 @{
     ViewData["Title"] = "Habitaciones";
 }
-<div class="container">
-    <Center>
-        
-        <div class="card bg-info">
-  
-  <div class="card-body">
-    <h5 class="card-title">Administrar habitaciones</h5>
+<head>  
+    <link rel="stylesheet" href="~/css/Formularios.css" />
+   <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>      
+</head>
 
+<body>
+<!--Inicio Banner-->
+<div class="hero-wrap hero-wrap-2" style="background-image: url('images/banner1.jpg'); background-attachment:fixed; height: 200px;">
+      <div class="overlay" style="height: 200px;" ></div>
+        <div class="container">
+          <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true" style="height: 200px;">
+           <div class="col-md-8 ftco-animate text-center">          
+             <h1 class="mb-3 bread">Registrar Habitación</h1>
+            </div>
+          </div>
+       </div>
+</div>    
+<br>
+<br>
+<!--Fin Banner-->
+
+<div class="container formulario">
+    <Center>        
         <form asp-controller="Habitaciones" asp-action="Registrar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row align-items-center">
             <div class="form-group text-left col-sm">
                 <label asp-for="idtipo" class="control-label"></label>
-                <input asp-for="idtipo" class="form-control">
+                <input asp-for="idtipo" class="form-control rounded-pill">
                 <span asp-validation-for="idtipo" class="text-danger"></span>
             </div>
             <div class="form-group text-left col-sm">
                 <label asp-for="numero" class="control-label"></label>
-                <input asp-for="numero" class="form-control">
+                <input asp-for="numero" class="form-control rounded-pill">
                 <span asp-validation-for="numero" class="text-danger"></span>
             </div>
             </div>
             <div class="row align-items-center">
             <div class="form-group text-left col-sm">
                 <label asp-for="precio" class="control-label"></label>
-                <input asp-for="precio" class="form-control">
+                <input asp-for="precio" class="form-control rounded-pill">
                 <span asp-validation-for="precio" class="text-danger"></span>
             </div>
         <div class="form-group text-left col-sm">
                 <label asp-for="nivel" class="control-label"></label>
-                <select asp-for="nivel" class="form-control" aria-label="Default select example">
+                <select asp-for="nivel" class="form-control rounded-pill" aria-label="Default select example">
                 <option value="1">Primero</option>
                 <option value="2">Segundo</option>
                 <option value="3">Tercero</option>
@@ -49,21 +64,20 @@
             </div>
             <div class="row align-items-center">
             <div class="form-group text-left col-sm">
-                <label asp-for="disponible" class="control-label"></label>
-                <input asp-for="disponible" class="form-control">
-                <span asp-validation-for="disponible" class="text-danger"></span>
+                <label asp-for="Estado" class="control-label"></label>
+                <input asp-for="Estado" class="form-control rounded-pill">
+                <span asp-validation-for="Estado" class="text-danger"></span>
             </div>
             <div class="form-group text-left col-sm">
                 <label asp-for="Imagen" class="control-label"></label>
-                <input asp-for="Imagen" class="form-control">
+                <input asp-for="Imagen" class="form-control rounded-pill">
                 <span asp-validation-for="Imagen" class="text-danger"></span>
             </div>
             <div class="form-group col-sm">
-                <button class="btn btn-success">Registrar</button>
+                <button class="button">Registrar</button>
             </div>
             </div>
-        </form>
-    </div>
+        </form>    
+    </Center>
 </div>
-</Center>
-</div>
+</body>

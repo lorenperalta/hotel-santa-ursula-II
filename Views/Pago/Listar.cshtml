@@ -2,6 +2,26 @@
 @{
     var count = 1;
 }
+<head> 
+    <link rel="stylesheet" href="~/css/Formularios.css" />
+   <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>      
+</head>
+
+<body>
+      <!--Inicio Banner-->
+<div class="hero-wrap hero-wrap-2" style="background-image: url('../images/banner1.jpg'); background-attachment:fixed; height: 200px;">
+      <div class="overlay" style="height: 200px;" ></div>
+        <div class="container">
+          <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true" style="height: 200px;">
+           <div class="col-md-8 ftco-animate text-center">          
+             <h1 class="mb-3 bread">Reservas Realizadas</h1>
+            </div>
+          </div>
+       </div>
+</div>    
+<br>
+<br>
+<!--Fin Banner-->
 <div class="container">
     
     <table class="table table-hover">
@@ -43,8 +63,8 @@
                 </td>
                 
                 <th scope="row">
-                    <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-success active" role="button">Editar</a> 
-                    <a asp-action="Eliminar" asp-route-id="@item.Id" class="btn btn-success active" role="button" onclick="return confirm('Esta seguro que desea eliminar? : @item.Id ')">Eliminar</a>
+                    <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-outline-success" role="button">Editar</a> 
+                    <a asp-action="Eliminar" asp-route-id="@item.Id" class="btn btn-outline-danger" role="button" onclick="return confirm('Esta seguro que desea eliminar? : @item.Id ')">Eliminar</a>
                 </th>
             </tr>
             count++;
@@ -52,4 +72,4 @@
         </tbody> 
     </table>
 </div>
-
+</body>

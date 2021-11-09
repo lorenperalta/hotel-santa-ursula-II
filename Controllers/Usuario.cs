@@ -26,6 +26,7 @@ namespace hotel_santa_ursula_II.Controllers
         {
             return View();
         }
+    
 
         [HttpPost]
         public IActionResult Registrar(Models.Usuario objMuestra)
@@ -34,10 +35,67 @@ namespace hotel_santa_ursula_II.Controllers
             {
                 _context.Add(objMuestra);
                 _context.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Usuario");
 
             }
-            return View("Index", objMuestra);
+            
+           ViewData["Message"] = "El cliente ha sido registrado";
+            return View("Index");
+        }
+
+        public IActionResult ListarUsuario()
+        {
+             var lista = _context.listausuarios.ToList();
+            return View(lista);
+            // return View();
+        }
+
+        public async Task<IActionResult> Editar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var Usu = await _context.usuario.FindAsync(id);
+            if (Usu == null)
+            {
+                return NotFound();
+            }
+            return View(Usu);
+        }
+
+         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Editar(int id, [Bind("nombres,apellidos,dni,direccion,telefono,correo")] Models.Usuario Usu)
+        {
+            if (id != Usu.id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(Usu);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction("ListarUsuario");
+        }
+
+        public IActionResult Eliminar(int? id)
+        {
+            var idusu = _context.usuario.Find(id);
+            _context.usuario.Remove(idusu);
+            _context.SaveChanges();
+            return RedirectToAction("ListarUsuario");
         }
     }
 }

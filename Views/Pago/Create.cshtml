@@ -2,34 +2,55 @@
 @{
     ViewData["Title"] = "Pago";
 }
+<head>  
+  <link rel="stylesheet" href="~/css/Formularios.css" />
+   <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>      
+</head>
 
-<h1>@ViewData["Title"]</h1>
-<div class="col-lg-6" style="float:none;margin:auto;">
-    <div class="alert alert-success" role="alert">@ViewData["Message"]</div>
-    <h3>Ingresa tus datos</h3>
+<body>
+   <!--Inicio Banner-->
+<div class="hero-wrap hero-wrap-2" style="background-image: url('../images/banner1.jpg'); background-attachment:fixed; height: 200px;">
+      <div class="overlay" style="height: 200px;" ></div>
+        <div class="container">
+          <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true" style="height: 200px;">
+           <div class="col-md-8 ftco-animate text-center">          
+             <h1 class="mb-3 bread">Realizar Pago</h1>
+            </div>
+          </div>
+       </div>
+</div>    
+<br>
+<br>
+<!--Fin Banner-->
+<!--<div class="col-lg-6" style="float:none;margin:auto;">-->
+  
+    <div class="alert alert-success" role="alert">@ViewData["Message"]</div>    
 
-    
+    <div class="container formulario">
            <form asp-controller="Pago" asp-action="Pagar">
               
                 <input type="hidden" asp-for="UserID"/>
                 
                 <label asp-for="NombreTarjeta" class="control-label">Nombre en la Tarjeta</label>
-                <input asp-for="NombreTarjeta" class="form-control rounded-pill bg-secondary text-white" />
+                <input asp-for="NombreTarjeta" class="form-control rounded-pill" />
                 <br>
                 <label asp-for="NumeroTarjeta" class="control-label">Número de Tarjeta</label>
-                <input asp-for="NumeroTarjeta" class="form-control rounded-pill bg-secondary text-white" data-inputmask="'mask': '9999-9999-9999-9999'" />
+                <input asp-for="NumeroTarjeta" class="form-control rounded-pill" data-inputmask="'mask': '9999-9999-9999-9999'" />
                 <br>
                 <label asp-for="DueDateYYMM" class="control-label">Fecha de Vencimiento</label>
-                <input asp-for="DueDateYYMM" class="form-control rounded-pill bg-secondary text-white" data-inputmask="'mask': '99/99', 'placeholder': 'yy/mm'" />
+                <input asp-for="DueDateYYMM" class="form-control rounded-pill" data-inputmask="'mask': '99/99', 'placeholder': 'yy/mm'" />
                 <br>
                 <label asp-for="Cvv" class="control-label">Código CVV</label>
-                <input asp-for="Cvv" class="form-control rounded-pill bg-secondary text-white" data-inputmask="'mask': '999', 'placeholder': '999'" />
+                <input asp-for="Cvv" class="form-control rounded-pill" data-inputmask="'mask': '999', 'placeholder': '999'" />
                 <br>
                 <label asp-for="MontoTotal" class="control-label">Monto Total</label>
-                <input asp-for="MontoTotal" class="form-control rounded-pill bg-secondary text-white" data-thousands="," data-decimal="." readonly />
+                <input asp-for="MontoTotal" class="form-control rounded-pill" data-thousands="," data-decimal="." readonly />
                 <br>
                 <div class="form-group">
-                  <button type="submit" class="btn rounded-pill btn-dark btn-block">Pagar</button> 
+                  <button type="submit" class="button">Pagar</button> 
                 </div>
                 
             </form>
+
+      </div>
+  </body>

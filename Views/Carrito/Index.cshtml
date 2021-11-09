@@ -8,13 +8,30 @@
     Double montoTotal = @Model.montoTotal;
 }
 
-<h1>@ViewData["Title"]</h1>
+<head>  
+    <link rel="stylesheet" href="~/css/Formularios.css" />
+   <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>      
+</head>
 
-<a class="btn btn-primary" asp-controller="Pago" 
-       asp-action="Create" asp-route-monto="@montoTotal">Pagar</a><p>Total S/. @montoTotal</p>
+<body>
+    <!--Inicio Banner-->
+<div class="hero-wrap hero-wrap-2" style="background-image: url('images/banner1.jpg'); background-attachment:fixed; height: 200px;">
+      <div class="overlay" style="height: 200px;" ></div>
+        <div class="container">
+          <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true" style="height: 200px;">
+           <div class="col-md-8 ftco-animate text-center">          
+             <h1 class="mb-3 bread">Reservas Pendientes</h1>
+            </div>
+          </div>
+       </div>
+</div>    
+<br>
+<br>
+<!--Fin Banner-->
 
-<table class="table">
-    <thead>
+<div class="container">
+<table class="table table-hover">
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => listProformas.FirstOrDefault().habitacion.numero)
@@ -41,10 +58,14 @@
                 @Html.DisplayFor(modelItem => item.Precio)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<a class="btn btn-primary button" asp-controller="Pago" asp-action="Create" asp-route-monto="@montoTotal">Pagar</a><p align="center" style="font-size: 200%;">Total S/. @montoTotal</p>
+</div>
+</body>
