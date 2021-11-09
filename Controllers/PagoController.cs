@@ -70,7 +70,7 @@ namespace hotel_santa_ursula_II.Controllers
             hab = hab.Where(n => n.id.Equals(a));
             foreach (Models.Habitaciones j in hab.ToList())
             {
-                j.disponible=false;
+                /*j.disponible=false;*/
             }
             _context.UpdateRange(hab);
            _context.SaveChanges();

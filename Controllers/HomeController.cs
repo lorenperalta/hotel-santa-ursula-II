@@ -23,7 +23,7 @@ namespace hotel_santa_ursula_II.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Nosotros()
         {
             return View();
         }

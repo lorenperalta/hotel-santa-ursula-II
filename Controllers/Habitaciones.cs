@@ -27,12 +27,20 @@ namespace hotel_santa_ursula_II.Controllers
         {
             return View();
         }
-        public IActionResult Mostrar()
+       /* public IActionResult Mostrar()
         {
              var resultado=_context.habitaciones.Where(x=>x.disponible==true).ToList();
             var habitacionesm = from o in _context.habitaciones select o;
             return View(resultado);
+            
+        }*/
+
+        public async Task<IActionResult> Mostrar()
+        {
+            var habitaciones = from o in _context.habitaciones select o;
+            return View(await habitaciones.ToListAsync());
         }
+
         public async Task<IActionResult> Detalles(int? id)
         {
             Models.Habitaciones objProduct = await _context.habitaciones.FindAsync(id);
@@ -98,7 +106,7 @@ namespace hotel_santa_ursula_II.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(int id, [Bind("id,idtipo,numero,precio,descripcion,nivel,disponible,Imagen")] Models.Habitaciones Hab)
+        public async Task<IActionResult> Editar(int id, [Bind("id,idtipo,numero,precio,descripcion,nivel,Estado,Imagen")] Models.Habitaciones Hab)
         {
             if (id != Hab.id)
             {

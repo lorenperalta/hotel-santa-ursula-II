@@ -24,7 +24,7 @@ namespace hotel_santa_ursula_II.Models
         [Required(ErrorMessage = "precio")]
         [Display(Name = "Precio: ")]
         [Column("precio")]
-        public double precio { get; set; }
+        public int precio { get; set; }
 
         [Required(ErrorMessage = "Descripcion")]
         [Display(Name = "Descripcion: ")]
@@ -35,10 +35,11 @@ namespace hotel_santa_ursula_II.Models
         [Display(Name = "Nivel: ")]
         [Column("nivel")]
         public int nivel { get; set; }
-        [Required(ErrorMessage = "disponible")]
-        [Display(Name = "disponible: ")]
-        [Column("disponible")]
-        public bool disponible { get; set; }
+
+        [Required(ErrorMessage = "Estado")]
+        [Display(Name = "Estado: ")]
+        [Column("Estado")]
+        public String Estado { get; set; }
 
         [Required(ErrorMessage = "Imagen")]
         [Display(Name = "Imagen(URL): ")]
