@@ -2,84 +2,249 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+
+    ViewData["Title"] = "Iniciar Sesion";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in"><label hidden for="tab-1"
+            class="tab">Registrarse</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">Iniciar
+            Sesion</label>
+        <div class="login-form">
+            <div class="sign-up-htm">
+                <form id="account" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="group">
+                        <label class="label">Correo</label>
+                        <input asp-for="Input.Email" class="input" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to log in.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
+                    <div class="group">
+                        <label class="label">Contraseña</label>
+                        <input asp-for="Input.Password" class="input" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
+                    <div class="group">
+                        <input type="submit" class="button" value="Iniciar Sesion">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <a id="forgot-password" asp-page="./ForgotPassword">Olvidaste tu contraseña?</a>
+                    </div>
+                    <br>
+                    <div class="foot-lnk">
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registrar un nuevo usuario</a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
+<style>
+    body {
+        margin: 0;
+        color: #6a6f8c;
+    }
+
+    *,
+    :after,
+    :before {
+        box-sizing: border-box
+    }
+
+    .clearfix:after,
+    .clearfix:before {
+        content: '';
+        display: table
+    }
+
+    .clearfix:after {
+        clear: both;
+        display: block
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        color: #0b42b8;
+    }
+
+    .login-wrap {
+        font: 600 16px/18px 'Open Sans', sans-serif;
+        width: 100%;
+        margin: auto;
+        max-width: 525px;
+        min-height: 670px;
+        position: relative;
+        background: url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
+        box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+    }
+
+    .login-html {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        padding: 90px 70px 50px 70px;
+        background: rgba(184, 135, 11, 0.69)
+    }
+
+    .login-html .sign-in-htm,
+    .login-html .sign-up-htm {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        transform: rotateY(180deg);
+        backface-visibility: hidden;
+        transition: all .4s linear;
+    }
+
+    .login-html .sign-in,
+    .login-html .sign-up,
+    .login-form .group .check {
+        display: none;
+    }
+
+    .login-html .tab,
+    .login-form .group .label,
+    .login-form .group .button {
+        text-transform: uppercase;
+    }
+
+    .login-html .tab {
+        font-size: 22px;
+        margin-right: 15px;
+        padding-bottom: 5px;
+        margin: 0 15px 10px 0;
+        display: inline-block;
+        border-bottom: 2px solid transparent;
+    }
+
+    .login-html .sign-in:checked+.tab,
+    .login-html .sign-up:checked+.tab {
+        color: #000;
+        border-color: #b8860b;
+    }
+
+    .login-form {
+        min-height: 345px;
+        position: relative;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+    }
+
+    .login-form .group {
+        margin-bottom: 15px;
+    }
+
+    .login-form .group .label,
+    .login-form .group .input,
+    .login-form .group .button {
+        width: 100%;
+        color: #000;
+        display: block;
+    }
+
+    .login-form .group .input,
+    .login-form .group .button {
+        border: none;
+        padding: 15px 20px;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.295);
+    }
+
+    .login-form .group input[data-type="password"] {
+        text-security: circle;
+        -webkit-text-security: circle;
+    }
+
+    .login-form .group .label {
+        color: #000;
+        font-size: 12px;
+    }
+
+    .login-form .group .button {
+        background: #b8860b;
+    }
+
+    .login-form .group label .icon {
+        width: 15px;
+        height: 15px;
+        border-radius: 2px;
+        position: relative;
+        display: inline-block;
+        background: rgba(255, 255, 255, .1);
+    }
+
+    .login-form .group label .icon:before,
+    .login-form .group label .icon:after {
+        content: '';
+        width: 10px;
+        height: 2px;
+        background: #fff;
+        position: absolute;
+        transition: all .2s ease-in-out 0s;
+    }
+
+    .login-form .group label .icon:before {
+        left: 3px;
+        width: 5px;
+        bottom: 6px;
+        transform: scale(0) rotate(0);
+    }
+
+    .login-form .group label .icon:after {
+        top: 6px;
+        right: 0;
+        transform: scale(0) rotate(0);
+    }
+
+    .login-form .group .check:checked+label {
+        color: #fff;
+    }
+
+    .login-form .group .check:checked+label .icon {
+        background: #b8860b;
+    }
+
+    .login-form .group .check:checked+label .icon:before {
+        transform: scale(1) rotate(45deg);
+    }
+
+    .login-form .group .check:checked+label .icon:after {
+        transform: scale(1) rotate(-45deg);
+    }
+
+    .login-html .sign-in:checked+.tab+.sign-up+.tab+.login-form .sign-in-htm {
+        transform: rotate(0);
+    }
+
+    .login-html .sign-up:checked+.tab+.login-form .sign-up-htm {
+        transform: rotate(0);
+    }
+
+    .hr {
+        height: 2px;
+        margin: 60px 0 50px 0;
+        background: rgba(255, 255, 255, .2);
+    }
+
+    .foot-lnk {
+        text-align: center;
+    }
+
+    input:focus {
+        outline: none !important;
+        border: 1px solid;
+        box-shadow: 0 0 10px;
+    }
+</style>
+
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+<partial name="_ValidationScriptsPartial" />
 }
+
