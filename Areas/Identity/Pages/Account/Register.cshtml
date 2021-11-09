@@ -1,0 +1,43 @@
+@page
+@model RegisterModel
+<link rel="stylesheet" href="~/css/style.css">
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1"
+            class="tab">Registrarse</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label hidden for="tab-2" class="tab"></label>
+        <div class="login-form">
+            <div class="sign-in-htm">
+                <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="group">
+                        <label asp-for="Input.Email" class="label"></label>
+                        <input asp-for="Input.Email" class="input" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="group">
+                        <label asp-for="Input.Password" class="label"></label>
+                        <input asp-for="Input.Password" class="input" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="group">
+                        <label asp-for="Input.ConfirmPassword" class="label"></label>
+                        <input asp-for="Input.ConfirmPassword" class="input" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="Registrarse">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
