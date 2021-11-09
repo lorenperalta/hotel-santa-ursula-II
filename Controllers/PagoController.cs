@@ -83,12 +83,14 @@ namespace hotel_santa_ursula_II.Controllers
             {
                 p.Status="PROCESADO";
             }
-            _context.UpdateRange(itemsReserva);
+            _context.RemoveRange(itemsReserva);
 
             _context.SaveChanges();
-            
-            
-
+            /*******/
+           /*var resultado=_context.DataProforma.Where(x=>x.Status=="PROCESADO").ToList();
+           _context.DataProforma.Remove(resultado);
+           _context.SaveChanges();*/
+            /*******/
             ViewData["Message"] = "El pago se ha registrado";
             return View("Create");
         }
