@@ -1,15 +1,11 @@
-@model dynamic;
-@using System.Collections.Generic;
-
+@model IEnumerable<hotel_santa_ursula_II.Models.Carrito>
 @{
-    ViewData["Title"] = "Carrito";
+    ViewData["Title"] = "Carrito de Compras";
     IEnumerable<hotel_santa_ursula_II.Models.Carrito> listProformas = new List<Carrito>();
-    listProformas = @Model.proformas;
-    Double montoTotal = @Model.montoTotal;
+    
 }
 
 <head>  
-    <link rel="stylesheet" href="~/css/Formularios.css" />
    <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>      
 </head>
 
@@ -30,24 +26,33 @@
 <!--Fin Banner-->
 
 <div class="container">
-<table class="table table-hover">
+    <table class="table table-hover">
     <thead class="thead-dark">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => listProformas.FirstOrDefault().habitacion.numero)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => listProformas.FirstOrDefault().Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => listProformas.FirstOrDefault().Precio)
-            </th>
-            <th></th>
+             <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.habitacion.numero)
+                </th>
+               
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Precio)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.C_noches)
+                </th>
+                <th scope="col" >
+                    <p ></p>
+                </th>
         </tr>
     </thead>
-    <tbody>
-@foreach (Carrito item in Model.proformas) {
-        <tr>
+	@foreach (var item in Model)
+	{
+        //@if (item.Email == @User.Identity.Name)
+        //{
+            <tr>
+          
             <td>
                 @Html.DisplayFor(modelItem => item.habitacion.numero)
             </td>
@@ -58,14 +63,55 @@
                 @Html.DisplayFor(modelItem => item.Precio)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                @Html.DisplayFor(modelItem => item.C_noches)
             </td>
-        </tr>
-}
-    </tbody>
+            <td>
+            <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-outline-success">Editar</a>
+            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Eliminar</a>  
+            </td>
+            </tr>            
+	}
+    </tbody>    
 </table>
 
-<a class="btn btn-primary button" asp-controller="Pago" asp-action="Create" asp-route-monto="@montoTotal">Pagar</a><p align="center" style="font-size: 200%;">Total S/. @montoTotal</p>
-</div>
+@{
+        int total = 0;
+        
+        var contar = 0;
+      }
+      @foreach (var item in Model){
+         <tr>
+            @{
+               total = total + item.Precio * item.Quantity;
+                
+               contar++;
+            }
+         </tr>
+      }
+@{
+        
+        int total1=0;
+        var contar1 = 0;
+      }
+      @foreach (var item in Model){
+         <tr>
+            @{
+               total1 = total1 + item.Precio * item.C_noches;
+                
+               contar1++;
+            }
+         </tr>
+      }
+
+
+
+    <!--<div class="container">
+         <h4>Total: S/ @total </h4> 
+           <h5>total @total1</h5>           
+    </div>-->
+
+    <a class="btn btn-primary button" asp-controller="Pago" asp-action="Create" asp-route-monto="@total1">Pagar</a><p align="center" style="font-size: 200%;">Total a Pagar S/. @total1</p>
+
+      
 </body>
+    

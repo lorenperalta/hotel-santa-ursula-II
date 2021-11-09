@@ -2,19 +2,17 @@
 @{
     var count = 1;
 }
-<head> 
-    <link rel="stylesheet" href="~/css/Formularios.css" />
+<head>  
    <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>      
 </head>
-
 <body>
-      <!--Inicio Banner-->
+    <!--Inicio Banner-->
 <div class="hero-wrap hero-wrap-2" style="background-image: url('../images/banner1.jpg'); background-attachment:fixed; height: 200px;">
       <div class="overlay" style="height: 200px;" ></div>
         <div class="container">
           <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true" style="height: 200px;">
            <div class="col-md-8 ftco-animate text-center">          
-             <h1 class="mb-3 bread">Tipos de Habitaciones</h1>
+             <h1 class="mb-3 bread">Tipo de Habitación</h1>
             </div>
           </div>
        </div>
@@ -22,10 +20,14 @@
 <br>
 <br>
 <!--Fin Banner-->
-<div class="container">
-    <p id="hora"></p>
+
+<form asp-action="Crear">
+<button class="button">Crear Nuevo</button>
+
+<div class="container" >
+    <p id="hora"></p>  
     
-    <br><table class="table table-hover">
+    <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
                     <th scope="col">
@@ -66,9 +68,6 @@
         }        
         </tbody> 
     </table>
-    <br>
-    <br>
-
-    <a class="btn btn-success float-right button" role="button" asp-action="Crear">Crear Nuevo</a><br>
+    </form>
 </div>
 </body>

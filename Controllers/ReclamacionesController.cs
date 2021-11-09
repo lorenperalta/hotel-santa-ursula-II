@@ -35,7 +35,7 @@ namespace hotel_santa_ursula_II.Controllers
             return View();
         }
 
-
+/********************************REGISTRAR RECLAMO*******************************/
         [HttpPost]
         public IActionResult Registrar(Reclamaciones objreclamacion)
         {
@@ -48,12 +48,12 @@ namespace hotel_santa_ursula_II.Controllers
             }
             return View("Crear", objreclamacion);
         }
-
+/********************************CONFIRMAR RECLAMO*******************************/
         public IActionResult ConfirmacionUpdate()
         {
             return View();
         }
-
+/********************************EDITAR RECLAMO*******************************/
         public async Task<IActionResult> Editar(int? id)
         {
             if (id == null)
@@ -93,7 +93,7 @@ namespace hotel_santa_ursula_II.Controllers
             }
             return View(objreclamacion);
         }
-
+/********************************ELIMINAR RECLAMO*******************************/
         public IActionResult Eliminar(int? id)
         {
             var Ereclamacion = _context.reclamo.Find(id);

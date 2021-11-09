@@ -16,7 +16,7 @@ namespace hotel_santa_ursula_II.Models
 
         public String UserID{ get; set; }
 
-        public Decimal Total { get; set; }
+        public int Total { get; set; }
 
         public Pago pago { get; set; }
 

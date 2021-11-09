@@ -23,5 +23,7 @@ namespace hotel_santa_ursula_II.Models
         [Display(Name="Descripción: ")]
         [Column("desctiphab")]
         public string desctiphab { get; set; }
+
+      
     }
 }

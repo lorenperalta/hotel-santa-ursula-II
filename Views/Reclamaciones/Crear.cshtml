@@ -2,19 +2,18 @@
 @{
  
 }
-<head>  
-    <link rel="stylesheet" href="~/css/Formularios.css" />
+<head> 
    <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>      
 </head>
 
 <body>
-    <!--Inicio Banner-->
+<!--Inicio Banner-->
 <div class="hero-wrap hero-wrap-2" style="background-image: url('../images/banner1.jpg'); background-attachment:fixed; height: 200px;">
       <div class="overlay" style="height: 200px;" ></div>
         <div class="container">
           <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true" style="height: 200px;">
            <div class="col-md-8 ftco-animate text-center">          
-             <h1 class="mb-3 bread">Registrar Sugerencia</h1>
+             <h1 class="mb-3 bread">Sugerencias o Reclamo</h1>
             </div>
           </div>
        </div>
@@ -22,9 +21,11 @@
 <br>
 <br>
 <!--Fin Banner-->
-<div class="container formulario">
 
-<div class="text-center">
+<div class="alert alert-success" role="alert">@ViewData["Message"]</div>  
+
+<div class="container formulario">  
+
     <form asp-controller="Reclamaciones" asp-action="Registrar">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -56,15 +57,13 @@
         </div><br>
         <div class="form-group text-left">
             <label asp-for="Reclamo" class="control-label"></label>
-            <input asp-for="Reclamo" class="form-control rounded-pill">
+            <textarea asp-for="Reclamo" id="ckeditor" cols="30" rows="10" class="ckeditor" value=""></textarea>
             <span asp-validation-for="Reclamo" class="text-danger"></span>
         </div><br>
 
         <div class="form-group">
-            <button class="button">Crear Nuevo</button>
-        </div><br>
-       
+            <button class="button">Enviar</button>
+        </div>
     </form>
-</div>
-</div>
+    </div>
 </body>

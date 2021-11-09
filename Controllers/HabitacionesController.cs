@@ -4,43 +4,39 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using hotel_santa_ursula_II.Models;
+using hotel_santa_ursula_II.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using hotel_santa_ursula_II.Data;
-using hotel_santa_ursula_II.Models;
-
 namespace hotel_santa_ursula_II.Controllers
 {
-    public class Habitaciones : Controller
+    public class HabitacionesController : Controller
     {
+         private readonly ILogger<HabitacionesController> _logger;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
-        
-        public Habitaciones(ApplicationDbContext context,  UserManager<IdentityUser> userManager)
+
+        public HabitacionesController(ILogger<HabitacionesController> logger,
+            ApplicationDbContext context,
+            UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _logger = logger;
             _userManager = userManager;
         }
-
         public IActionResult Index()
         {
             return View();
         }
-       /* public IActionResult Mostrar()
-        {
-             var resultado=_context.habitaciones.Where(x=>x.disponible==true).ToList();
-            var habitacionesm = from o in _context.habitaciones select o;
-            return View(resultado);
-            
-        }*/
-
+       
         public async Task<IActionResult> Mostrar()
         {
-            var habitaciones = from o in _context.habitaciones select o;
-            return View(await habitaciones.ToListAsync());
+            var productos = from o in _context.habitaciones select o;
+            productos = productos.Where(s => s.Estado.Equals("Disponible"));
+            return View(await productos.ToListAsync());
         }
-
         public async Task<IActionResult> Detalles(int? id)
         {
             Models.Habitaciones objProduct = await _context.habitaciones.FindAsync(id);
@@ -54,9 +50,9 @@ namespace hotel_santa_ursula_II.Controllers
         {
                var userID = _userManager.GetUserName(User);
             if(userID == null){
-                ViewData["Message"] = "Por favor debe loguearse antes de agregar un producto";
+                ViewData["Message"] = "DEBE INICIAR SESIÓN PARA PODER REALIZAR SU RESERVA";
                 List<Habitaciones> productos = new List<Habitaciones>();
-                return  View("Index",productos);
+                return  View("Mostrar",productos);
             }else{
                 var producto = await _context.habitaciones.FindAsync(id);
                 Carrito proforma = new Carrito();
@@ -64,18 +60,21 @@ namespace hotel_santa_ursula_II.Controllers
                 proforma.Precio = producto.precio;
                 proforma.Quantity = 1;
                 proforma.UserID = userID;
+                proforma.habitacion.Estado="Ocupado";
                 _context.Add(proforma);
                 await _context.SaveChangesAsync();
-                return  RedirectToAction("Mostrar","Habitaciones");
+                return  RedirectToAction(nameof(Mostrar));
             }
         }
-        
+         /*************************************** LISTAR HABITACION ******************************************/
         public IActionResult Listar()
         {
             var lista = _context.habitaciones.ToList();
             return View(lista);
+           
             // return View();
         }
+         /*************************************** EDITAR HABITACION ******************************************/
          public async Task<IActionResult> Editar(int? id)
         {
             if (id == null)
@@ -90,6 +89,7 @@ namespace hotel_santa_ursula_II.Controllers
             }
             return View(vtiphab);
         }
+         /*************************************** DETALLE HABITACION ******************************************/
          public async Task<IActionResult> Detalle(int? id)
         {
             if (id == null)
@@ -104,6 +104,8 @@ namespace hotel_santa_ursula_II.Controllers
             }
             return  RedirectToAction("Seleccionar","Reservas", new {id});
         }
+
+/*************************************** EDITAR HABITACION ******************************************/
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Editar(int id, [Bind("id,idtipo,numero,precio,descripcion,nivel,Estado,Imagen")] Models.Habitaciones Hab)
@@ -129,7 +131,7 @@ namespace hotel_santa_ursula_II.Controllers
             return RedirectToAction("Listar");
         }
 
-
+/*************************************** REGISTRAR HABITACION ******************************************/
         [HttpPost]
         public IActionResult Registrar(Models.Habitaciones objMuestra)
         {
@@ -137,18 +139,31 @@ namespace hotel_santa_ursula_II.Controllers
             {
                 _context.Add(objMuestra);
                 _context.SaveChanges();
-                return RedirectToAction("Mostrar");
+                return RedirectToAction("Listar");
 
             }
             return View("Index", objMuestra);
         }
-         public IActionResult Eliminar(int? id)
-        {
-            var etiphab = _context.habitaciones.Find(id);
-            _context.habitaciones.Remove(etiphab);
+/*************************************** MOSTRAR TUS HABITACIONES ****************************************/         
+        [HttpGet]
+        public async Task<IActionResult> Mostrar(String Empsearch){
+            ViewData["Getemployeedetails"]=Empsearch;
+            var empquery=from x in _context.habitaciones select x;
+            if(!string.IsNullOrEmpty(Empsearch)){
+                empquery=empquery.Where(x =>x.numero.Contains(Empsearch))  ;
+            }
+            return View(await empquery.AsNoTracking().ToListAsync());
+
+        }
+
+/***************************************** ELIMINAR UNA HABITACION ***************************************/
+        [HttpPost]
+        public IActionResult Eliminar(int id) {
+            var habitacion = _context.habitaciones.Find(id);
+            _context.Remove(habitacion);
             _context.SaveChanges();
             return RedirectToAction("Listar");
         }
 
-    }
+}
 }
