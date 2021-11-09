@@ -13,7 +13,9 @@ namespace hotel_santa_ursula_II.Models
         public String UserID {get; set;}
         public Habitaciones habitacion {get; set;}
         public int Quantity{get; set;}
-        public Double Precio { get; set; }
+        public int Precio { get; set; }
+
+        public int C_noches {get; set;} =1;
         public String Status { get; set; } = "PENDIENTE";
     }
 }

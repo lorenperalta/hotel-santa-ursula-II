@@ -11,39 +11,19 @@ namespace hotel_santa_ursula_II.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
         public int id { get; set; }
+        
 
-        [Display(Name = "Tipo de habitacion: ")]
-        [Column("idtipo")]
-        public int idtipo { get; set; }
-
-        [Required(ErrorMessage = "Numero de habitacion")]
-        [Display(Name = "Numero de habitacion: ")]
-        [Column("numero")]
         public string numero { get; set; }
 
-        [Required(ErrorMessage = "precio")]
-        [Display(Name = "Precio: ")]
-        [Column("precio")]
         public int precio { get; set; }
-
-        [Required(ErrorMessage = "Descripcion")]
-        [Display(Name = "Descripcion: ")]
-        [Column("descripcion")]
         public string descripcion { get; set; }
 
-        [Required(ErrorMessage = "Nivel")]
-        [Display(Name = "Nivel: ")]
-        [Column("nivel")]
         public int nivel { get; set; }
-
-        [Required(ErrorMessage = "Estado")]
-        [Display(Name = "Estado: ")]
-        [Column("Estado")]
-        public String Estado { get; set; }
-
-        [Required(ErrorMessage = "Imagen")]
-        [Display(Name = "Imagen(URL): ")]
-        [Column("Imagen")]
+        
+        public string Estado { get; set; }
         public string Imagen { get; set; }
+        
+        public TipoHabitacion tipoHabitacion { get; set; }
+
     }
 }

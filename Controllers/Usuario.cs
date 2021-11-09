@@ -40,7 +40,7 @@ namespace hotel_santa_ursula_II.Controllers
             }
             
            ViewData["Message"] = "El cliente ha sido registrado";
-            return View("Index");
+            return View("ListarUsuario");
         }
 
         public IActionResult ListarUsuario()

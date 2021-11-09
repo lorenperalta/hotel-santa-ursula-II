@@ -17,7 +17,7 @@ namespace hotel_santa_ursula_II.Models
         public Habitaciones Habitaciones {get; set;}
 
         public int Cantidad{get; set;}
-        public Decimal Precio { get; set; }
+        public int Precio { get; set; }
         public Pedido pedido {get; set;}
 
         

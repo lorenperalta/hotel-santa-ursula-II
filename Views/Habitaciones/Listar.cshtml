@@ -1,9 +1,9 @@
 @model IEnumerable<hotel_santa_ursula_II.Models.Habitaciones>
+
 @{
-    var count = 1;
+   
 }
-<head>  
-    <link rel="stylesheet" href="~/css/Formularios.css" />
+<head>
    <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>      
 </head>
 
@@ -22,10 +22,10 @@
 <br>
 <br>
 <!--Fin Banner-->
-<div class="container">
+<div class="container">    
     <p id="hora"></p>
     <!--<a class="btn btn-success float-right" role="button" asp-action="index">Registrar</a><br>-->
-    <br><table class="table table-hover">
+    <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
                     <th scope="col">
@@ -36,6 +36,15 @@
                     </th>
                     <th scope="col">
                         @Html.DisplayNameFor(model => model.precio)
+                    </th> 
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.descripcion)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.nivel)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Estado)
                     </th>
                     <th></th>
             </tr>
@@ -48,7 +57,7 @@
         {
             <tr>
                 <th scope="row">
-                    @count
+                    
                 </th>
                 <td>
                     @Html.DisplayFor(modelItem => item.numero)
@@ -56,14 +65,26 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.precio)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nivel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                
                 
                 <th scope="row">
                     <a asp-action="Editar" asp-route-id="@item.id" class="btn btn-outline-success" role="button">Editar</a> 
                     <a asp-action="Eliminar" asp-route-id="@item.id" class="btn btn-outline-danger" role="button" onclick="return confirm('Esta seguro que desea eliminar? : @item.id ')">Eliminar</a>
                 </th>
             </tr>
-            count++;
+            
         }        
+       
+    }
         </tbody> 
     </table>
 </div>
