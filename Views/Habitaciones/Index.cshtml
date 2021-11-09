@@ -57,7 +57,8 @@
             <div class="row align-items-center">
             <div class="form-group text-left col-sm">
                 <label asp-for="descripcion" class="control-label"></label>
-                <input asp-for="descripcion" class="form-control rounded-pill">
+                <textarea asp-for="descripcion" id="ckeditor" cols="30" rows="10" class="ckeditor" value=""></textarea>
+
                 <span asp-validation-for="descripcion" class="text-danger"></span>
             </div>
             </div>

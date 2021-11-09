@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Identity;
 using System.Dynamic;
 
 
-
 namespace hotel_santa_ursula_II.Controllers
 {
     public class CarritoController : Controller
@@ -78,11 +77,34 @@ namespace hotel_santa_ursula_II.Controllers
         }
          [HttpPost]
         public IActionResult Delete(int id) {
+          
+            var pro = from o in _context.DataProforma select o;
+            pro = pro.Where(n => n.Id.Equals(id));
+           
+         
+
+            foreach (Models.Carrito a in pro.ToList())
+            {
+                
+              
+                 var hab = from o in _context.habitaciones select o;
+                    hab = hab.Where(m => m.id.Equals(10));
+                    foreach (Models.Habitaciones j in hab.ToList())
+                    {
+                    
+                        j.Estado="Disponible";
+                    }
+                        _context.UpdateRange(hab);
+                        _context.SaveChanges();
+            }
             var carrito = _context.DataProforma.Find(id);
+                      
+       
             _context.Remove(carrito);
             _context.SaveChanges();
+            
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Carrito");
         }
     }
 }

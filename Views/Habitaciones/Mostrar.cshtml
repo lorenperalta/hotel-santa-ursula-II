@@ -56,9 +56,11 @@
                   </div>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">@Html.DisplayFor(modelItem => item.numero)</h5>
+                  <h6 class="card-title">Numero : @Html.DisplayFor(modelItem => item.numero)</h6>
                   
-                  <p class="card-text">@Html.DisplayFor(modelItem => item.precio)</p>
+                  <p class="card-text"><h6> S/ X noche : @Html.DisplayFor(modelItem => item.precio)</h6></p>
+                  <h6>Descripción</h6>
+                  @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.descripcion))
                   <p class="card-text">@Html.DisplayFor(modelItem => item.Estado)</p>
                   @if (item.Estado =="Ocupado" || item.Estado =="Reservado")
                   {

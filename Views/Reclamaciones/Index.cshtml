@@ -46,6 +46,7 @@
                         @Html.DisplayNameFor(model => model.Correo)
                     </th>
                     <th scope="col">
+                        
                         @Html.DisplayNameFor(model => model.Reclamo)
                     </th>
                     
@@ -77,7 +78,8 @@
                     @Html.DisplayFor(modelItem => item.Correo)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Reclamo)
+                    
+                    @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Reclamo))
                 </td>              
     
             </tr>

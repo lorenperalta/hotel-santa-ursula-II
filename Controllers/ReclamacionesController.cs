@@ -43,7 +43,7 @@ namespace hotel_santa_ursula_II.Controllers
             {
                 _context.Add(objreclamacion);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return View("Crear");
 
             }
             return View("Crear", objreclamacion);

@@ -126,7 +126,7 @@ namespace hotel_santa_ursula_II.Controllers
                 {
                     return NotFound();
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Listar");
             }
             return RedirectToAction("Listar");
         }
@@ -157,12 +157,12 @@ namespace hotel_santa_ursula_II.Controllers
         }
 
 /***************************************** ELIMINAR UNA HABITACION ***************************************/
-        [HttpPost]
-        public IActionResult Eliminar(int id) {
-            var habitacion = _context.habitaciones.Find(id);
-            _context.Remove(habitacion);
+        public IActionResult Eliminar(int? id)
+        {
+            var loco = _context.habitaciones.Find(id);
+            _context.habitaciones.Remove(loco);
             _context.SaveChanges();
-            return RedirectToAction("Listar");
+            return RedirectToAction("ListarUsuario");
         }
 
 }

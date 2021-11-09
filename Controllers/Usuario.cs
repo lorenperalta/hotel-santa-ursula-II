@@ -67,7 +67,8 @@ namespace hotel_santa_ursula_II.Controllers
 
          [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(int id, [Bind("nombres,apellidos,dni,direccion,telefono,correo")] Models.Usuario Usu)
+       
+        public async Task<IActionResult> Editare(int id, [Bind("nombres,apellidos,dni,direccion,telefono,correo")] Models.Usuario Usu)
         {
             if (id != Usu.id)
             {
@@ -96,6 +97,30 @@ namespace hotel_santa_ursula_II.Controllers
             _context.usuario.Remove(idusu);
             _context.SaveChanges();
             return RedirectToAction("ListarUsuario");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Editar(int id, [Bind("id,nombres,apellidos,dni,direccion,telefono,correo")] Models.Usuario usua)
+        {
+            if (id != usua.id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(usua);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction("Listar");
         }
     }
 }

@@ -65,7 +65,7 @@ namespace hotel_santa_ursula_II.Controllers
                 detallePedido.Precio = Convert.ToInt32(item.Precio);
                 detallePedido.Habitaciones = item.habitacion;
                 a=item.habitacion.id;
-                detallePedido.Cantidad = 2;
+                detallePedido.Cantidad = item.C_noches;
                 itemsPedido.Add(detallePedido);
                  var hab = from o in _context.habitaciones select o;
             hab = hab.Where(n => n.id.Equals(a));
