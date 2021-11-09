@@ -22,7 +22,7 @@ namespace hotel_santa_ursula_II.Models
         public String DueDateYYMM { get; set; }
         [NotMapped]
         public String Cvv { get; set; }
-        public Decimal MontoTotal{ get; set; }
+        public int MontoTotal{ get; set; }
         public String UserID{ get; set; }
   
     }

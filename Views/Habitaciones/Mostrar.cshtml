@@ -4,13 +4,12 @@
     ViewData["Title"] = "Catalogo";  
 }
 <head>  
-  <link rel="stylesheet" href="~/css/Formularios.css" />
    <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>      
 </head>
 
 <body>
 
-   <!--Inicio Banner-->
+<!-------------------------------BANNER-------------------------------->
 <div class="hero-wrap hero-wrap-2" style="background-image: url('../images/banner1.jpg'); background-attachment:fixed; height: 200px;">
       <div class="overlay" style="height: 200px;" ></div>
         <div class="container">
@@ -23,7 +22,23 @@
 </div>    
 <br>
 <br>
-<!--Fin Banner-->
+
+<!-------------------------------BUSCAR-------------------------------->
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <form class="d-flex" style="margin-left: 20%;">
+      <input class="form-control me-2" style="width: 500px;" type="search" placeholder="Buscar" aria-label="Search" value=" @ViewData["Getemployeedetails"]" name="Empsearch">
+      <button class="btn btn-outline-warning" type="submit">Buscar</button>
+      <a style="margin-left: 1%;" asp-action="Mostrar"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="35" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+  <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+  <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+</svg></a>
+    </form>
+  </div>
+</nav>
+<br>
+<br>
+<!-------------------------------------------------------------------->
 
   <div class="container">
     <h1>@ViewData["Message"]</h1>
@@ -42,10 +57,16 @@
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">@Html.DisplayFor(modelItem => item.numero)</h5>
-                  @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.descripcion))
-                
-                  <a asp-action="Seleccionar" asp-route-id="@item.id" class="btn btn-success active button" role="button">S/ @Html.DisplayFor(modelItem => item.precio) Reservar</a> 
-
+                  
+                  <p class="card-text">@Html.DisplayFor(modelItem => item.precio)</p>
+                  <p class="card-text">@Html.DisplayFor(modelItem => item.Estado)</p>
+                  @if (item.Estado =="Ocupado" || item.Estado =="Reservado")
+                  {
+                      <p class="btn btn-secondary">No disponible</p>
+                  }
+                  else{
+                     <a class="btn btn-warning" asp-action="Seleccionar" asp-route-id="@item.id" onclick="return confirm('RESERVA AGREGADA ? : @item.id ')">Reservar</a>
+                  }
                 </div>
               </div>
             </div>

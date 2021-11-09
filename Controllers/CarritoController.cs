@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Dynamic;
 
 
+
 namespace hotel_santa_ursula_II.Controllers
 {
     public class CarritoController : Controller
@@ -28,20 +29,15 @@ namespace hotel_santa_ursula_II.Controllers
         public async Task<IActionResult> Index()
         {
             var userID = _userManager.GetUserName(User);
-            var items = from o in _context.DataProforma select o;
-            items = items.
+            var carrito = from o in _context.DataProforma select o;
+            carrito = carrito.
                 Include(p => p.habitacion).
-                Where(s => s.UserID.Equals(userID) && s.Status.Equals("PENDIENTE"));
-
-            var elements = await items.ToListAsync();
-            var total = elements.Sum(c => c.Quantity * c.Precio );
+                Where(s => s.UserID.Equals(userID));
             
-            dynamic model = new ExpandoObject();
-            model.montoTotal = total;
-            model.proformas = elements;
-
-            return View(model);
+            return View(await carrito.ToListAsync());
         }
+        
+        /****************************************************************************************************/
 
         // GET: Proforma/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -50,64 +46,43 @@ namespace hotel_santa_ursula_II.Controllers
             {
                 return NotFound();
             }
-
             var proforma = await _context.DataProforma.FindAsync(id);
+            
             _context.DataProforma.Remove(proforma);
             await _context.SaveChangesAsync();
+            
+           
             return RedirectToAction(nameof(Index));
         }
         
-        // GET: Proforma/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var proforma = await _context.DataProforma.FindAsync(id);
-            if (proforma == null)
-            {
-                return NotFound();
-            }
-            return View(proforma);
+       public IActionResult Editar(int id) {
+            var region = _context.DataProforma.Find(id);
+            return View(region);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Quantity,Precio,UserID")] Carrito proforma)
-        {
-            if (id != proforma.Id)
-            {
-                return NotFound();
+        public IActionResult Editar(Carrito r) {
+            if (ModelState.IsValid) {
+                var region = _context.DataProforma.Find(r.Id);
+                region.Quantity = r.Quantity;
+                region.Precio=r.Precio;
+                region.C_noches=r.C_noches;
+                _context.SaveChanges();
+                return RedirectToAction("Index");
             }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(proforma);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProformaExists(proforma.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(proforma);
-        }
-        private bool ProformaExists(int id)
-        {
-            return _context.DataProforma.Any(e => e.Id == id);
+            return View(r);
         }
 
+        public IActionResult EditarConfirmacion() {
+            return View();
+        }
+         [HttpPost]
+        public IActionResult Delete(int id) {
+            var carrito = _context.DataProforma.Find(id);
+            _context.Remove(carrito);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }

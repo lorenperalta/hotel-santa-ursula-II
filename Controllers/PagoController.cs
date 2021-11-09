@@ -26,7 +26,7 @@ namespace hotel_santa_ursula_II.Controllers
         var lista = _context.DataPago.ToList();
             return View(lista);
 }
-        public IActionResult Create(Decimal monto)
+        public IActionResult Create(int monto)
         {
             Pago pago = new Pago();
             pago.UserID = _userManager.GetUserName(User);
@@ -53,6 +53,7 @@ namespace hotel_santa_ursula_II.Controllers
             pedido.UserID = pago.UserID;
             pedido.Total = pago.MontoTotal;
             pedido.pago = pago;
+            
             pedido.Estado = "PENDIENTE";
             _context.Add(pedido);
 
@@ -70,7 +71,7 @@ namespace hotel_santa_ursula_II.Controllers
             hab = hab.Where(n => n.id.Equals(a));
             foreach (Models.Habitaciones j in hab.ToList())
             {
-                /*j.disponible=false;*/
+                
             }
             _context.UpdateRange(hab);
            _context.SaveChanges();

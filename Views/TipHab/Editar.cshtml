@@ -7,8 +7,23 @@
 </head>
 
 <body>
+        <!--Inicio Banner-->
+<div class="hero-wrap hero-wrap-2" style="background-image: url('images/banner1.jpg'); background-attachment:fixed; height: 200px;">
+      <div class="overlay" style="height: 200px;" ></div>
+        <div class="container">
+          <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true" style="height: 200px;">
+           <div class="col-md-8 ftco-animate text-center">          
+             <h1 class="mb-3 bread">Editar tipo de habitación</h1>
+            </div>
+          </div>
+       </div>
+</div>  
+<br>
+<br>
+<!--Fin Banner-->
+<div class="container formulario">
+
 <div class="text-center">
-    <h6 class="display-4">Editar tipo de habitación</h6>
     <form  asp-controller="TipHab" asp-action="Editar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -25,8 +40,9 @@
             </div><br>
 
             <div class="form-group">
-                <button class="btn btn-primary btn-block rounded-pill">Editar Tipo</button>
+                <button class="button">Guardar</button>
             </div><br>
         </form>
+</div>
 </div>
 </body>
