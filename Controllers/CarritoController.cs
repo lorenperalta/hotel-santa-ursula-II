@@ -76,35 +76,27 @@ namespace hotel_santa_ursula_II.Controllers
             return View();
         }
          [HttpPost]
-        public IActionResult Delete(int id) {
+        public async Task<IActionResult> Delete(int id) {
           
-            var pro = from o in _context.DataProforma select o;
-            pro = pro.Where(n => n.Id.Equals(id));
-           
-         
-
-            foreach (Models.Carrito a in pro.ToList())
+           var userID = _userManager.GetUserName(User);
+            var car = await _context.DataProforma.FindAsync(id);
+            var itemsReserva = from o in _context.DataProforma select o;
+            itemsReserva = itemsReserva.
+                Include(p => p.habitacion).
+                Where(s => s.Id.Equals(id));
+             foreach (Carrito p in itemsReserva.ToList())
             {
-                
-              
-                 var hab = from o in _context.habitaciones select o;
-                    hab = hab.Where(m => m.id.Equals(10));
-                    foreach (Models.Habitaciones j in hab.ToList())
-                    {
-                    
-                        j.Estado="Disponible";
-                    }
-                        _context.UpdateRange(hab);
-                        _context.SaveChanges();
+                p.habitacion.Estado="Disponible";
             }
-            var carrito = _context.DataProforma.Find(id);
-                      
-       
-            _context.Remove(carrito);
+            _context.UpdateRange(itemsReserva);
+
+            _context.SaveChanges();
+            
+            _context.Remove(car);
             _context.SaveChanges();
             
 
-            return RedirectToAction("Carrito");
+            return View("Carrito");
         }
     }
 }
