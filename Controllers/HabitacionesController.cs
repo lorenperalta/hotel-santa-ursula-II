@@ -69,6 +69,7 @@ namespace hotel_santa_ursula_II.Controllers
          /*************************************** LISTAR HABITACION ******************************************/
         public IActionResult Listar()
         {
+
             var lista = _context.habitaciones.ToList();
             return View(lista);
            
@@ -108,7 +109,7 @@ namespace hotel_santa_ursula_II.Controllers
 /*************************************** EDITAR HABITACION ******************************************/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(int id, [Bind("id,idtipo,numero,precio,descripcion,nivel,Estado,Imagen,tipoHabitacion")] Models.Habitaciones Hab)
+        public async Task<IActionResult> Editar(int id, [Bind("id,tipoHabitacionid,numero,precio,descripcion,nivel,Estado,Imagen,tipoHabitacion")] Models.Habitaciones Hab)
         {
             if (id != Hab.id)
             {
@@ -119,6 +120,7 @@ namespace hotel_santa_ursula_II.Controllers
             {
                 try
                 {
+                    
                     _context.Update(Hab);
                     await _context.SaveChangesAsync();
                 }

@@ -72,10 +72,7 @@
                 S/. @Html.DisplayFor(modelItem => item.Precio)
             </td>
             <td>
-                    <script>
-                        var f = new Date();
-                        document.write(f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear());
-                    </script>
+                  @Html.DisplayFor(modelItem => item.fechar)  
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.C_noches)

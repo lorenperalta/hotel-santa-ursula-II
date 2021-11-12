@@ -34,8 +34,8 @@ namespace hotel_santa_ursula_II.Controllers
                 Where(s => s.UserID.Equals(userID));
 
                 //conversion de fechas a numeros e integer
-                var elements = await carrito.ToListAsync();
-                int numer = Convert.ToInt32( elements.Sum(c => c.fechar.Day));
+                //var elements = await carrito.ToListAsync();
+                //int numer = Convert.ToInt32( elements.Sum(c => c.fechar.Day));
                 //--------------------------------------------
             
             return View(await carrito.ToListAsync());
@@ -91,6 +91,7 @@ namespace hotel_santa_ursula_II.Controllers
                 /*region.Precio=r.Precio;*/
                 region.C_noches=r.C_noches;
                 region.fechar=r.fechar;
+              
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -1,4 +1,12 @@
 @model Carrito
+@{
+  DateTime fe,fef = new DateTime();
+  fe= DateTime.Now;
+  string vare= fe.ToString("yyyy-MM-dd");
+  fef= Model.fechar;
+string vares= fef.ToString("yyyy-MM-dd");
+}
+
 <head>  
    <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>      
 </head>
@@ -27,7 +35,8 @@
     
     <div class="form-group">      
         <label asp-for="fechar"></label>
-        <input asp-for="fechar" class="form-control rounded-pill" type="date" value="2021-11-12"  min="2021-11-12">        
+      
+        <input asp-for="fechar" class="form-control rounded-pill" type="date" value="@vares"  min="@vare">        
     </div>
     <div class="form-group">
         <label asp-for="C_noches"></label>
