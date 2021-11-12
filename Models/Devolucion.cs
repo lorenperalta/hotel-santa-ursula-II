@@ -24,11 +24,11 @@ namespace hotel_santa_ursula_II.Models
         [Column("dni")]
         public int dni { get; set; }
 
-        [Display(Name = "Motivo de devolucion: ")]
+        [Display(Name = "Motivo de devolución: ")]
         [Column("motivo")]
         public string motivo { get; set; }
 
-        [Display(Name = "NUmero de habitacion: ")]
+        [Display(Name = "Número de Habitación: ")]
         [Column("numero")]
         public int numero { get; set; }
 

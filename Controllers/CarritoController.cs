@@ -32,10 +32,15 @@ namespace hotel_santa_ursula_II.Controllers
             carrito = carrito.
                 Include(p => p.habitacion).
                 Where(s => s.UserID.Equals(userID));
+
+                //conversion de fechas a numeros e integer
+                var elements = await carrito.ToListAsync();
+                int numer = Convert.ToInt32( elements.Sum(c => c.fechar.Day));
+                //--------------------------------------------
             
             return View(await carrito.ToListAsync());
         }
-         public async Task<IActionResult> ContactPDF()
+       /*  public async Task<IActionResult> ContactPDF()
         {
             int a =10;
             var norma = _context.DataPago.ToList();
@@ -53,7 +58,7 @@ namespace hotel_santa_ursula_II.Controllers
             {
 
             }
-        }
+        }*/
         
         /****************************************************************************************************/
 
@@ -82,9 +87,10 @@ namespace hotel_santa_ursula_II.Controllers
         public IActionResult Editar(Carrito r) {
             if (ModelState.IsValid) {
                 var region = _context.DataProforma.Find(r.Id);
-                region.Quantity = r.Quantity;
-                region.Precio=r.Precio;
+                /*region.Quantity = r.Quantity;*/
+                /*region.Precio=r.Precio;*/
                 region.C_noches=r.C_noches;
+                region.fechar=r.fechar;
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }

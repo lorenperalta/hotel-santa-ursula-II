@@ -27,11 +27,20 @@
     
     <div class="container formulario">
            <form asp-controller="Pago" asp-action="Pagar">
-              
+
                 <input type="hidden" asp-for="UserID"/>
                 
-                <label asp-for="NombreTarjeta" class="control-label">Nombre en la Tarjeta</label>
-                <input asp-for="NombreTarjeta" class="form-control rounded-pill" />
+                <div class="form-group text-left">
+                <label asp-for="NombreTarjeta" class="control-label"></label>
+                <select asp-for="NombreTarjeta" class="form-control rounded-pill" aria-label="Default select example">
+                <option value="BCP">BCP</option>
+                <option value="BBVA">BBVA</option>
+                <option value="Interbank">Interbank</option>
+                <option value="Scotiabank">Scotiabank</option>
+                <option value="Caja Arequipa">Caja Arequipa</option>
+                </select>
+                <span asp-validation-for="NombreTarjeta" class="text-danger"></span>
+                </div>
                 <br>
                 <label asp-for="NumeroTarjeta" class="control-label">Número de Tarjeta</label>
                 <input asp-for="NumeroTarjeta" class="form-control rounded-pill" data-inputmask="'mask': '9999-9999-9999-9999'" />
@@ -46,17 +55,16 @@
                 <input asp-for="MontoTotal" class="form-control rounded-pill" data-thousands="," data-decimal="." readonly />
                 <br>
                 <div class="form-group">
-                  <button type="submit" class="button">Pagar</button><br><br><hr>
-                  
+                  <button type="submit" class="button">Pagar</button>                  
                 </div>
                 
             </form>
-            <form asp-controller="Carrito" asp-action="ContactPDF" target="_blank">
+            <!--<form asp-controller="Carrito" asp-action="ContactPDF">
                   <button type="submit" class="button" id="boton">Generar Comprobante</button>                 
 
-            </form>
+            </form>-->
 
-            <a asp-action="Documento">GENERAR PDF</a>
+            <a asp-action="Documento" target="_blank">GENERAR COMPROBANTE PDF</a>
                   
             </div>
         </div>

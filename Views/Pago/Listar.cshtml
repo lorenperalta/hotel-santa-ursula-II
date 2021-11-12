@@ -30,11 +30,12 @@
                         №
                     </th>
                     <th scope="col">
-                        @Html.DisplayNameFor(model => model.FechaPago)
+                        @Html.DisplayNameFor(model => model.UserID)
                     </th>
                     <th scope="col">
-                        @Html.DisplayNameFor(model => model.NombreTarjeta)
+                        @Html.DisplayNameFor(model => model.FechaPago)
                     </th>
+                    
                     <th scope="col">
                         @Html.DisplayNameFor(model => model.MontoTotal)
                     </th>
@@ -52,13 +53,14 @@
                     @count
                 </th>
                 <td>
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.FechaPago)
                 </td>
+                
                 <td>
-                    @Html.DisplayFor(modelItem => item.NombreTarjeta)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MontoTotal)
+                    S/. @Html.DisplayFor(modelItem => item.MontoTotal)
                 </td>
                 
             </tr>
@@ -68,7 +70,7 @@
     </table>
   <div class="container">
         
-        <a asp-action="ExportarExcel">Exporta a Excel</a>
+        <a asp-action="ExportarExcel">GENERAR REPORTE EXCEL</a>
 
     </div>
 

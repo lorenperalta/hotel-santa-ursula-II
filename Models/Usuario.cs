@@ -24,11 +24,11 @@ namespace hotel_santa_ursula_II.Models
         [Column("dni")]
         public int dni { get; set; }
 
-        [Display(Name = "Direccion: ")]
+        [Display(Name = "Dirección: ")]
         [Column("direccion")]
         public string direccion { get; set; }
 
-        [Display(Name = "Telefono: ")]
+        [Display(Name = "Teléfono: ")]
         [Column("telefono")]
         public int telefono { get; set; }
 

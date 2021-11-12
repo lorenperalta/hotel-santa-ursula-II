@@ -1,7 +1,7 @@
 @model IEnumerable<hotel_santa_ursula_II.Models.Habitaciones>
-
+    
 @{
-   
+   var count = 1;
 }
 <head>
    <script src="https://kit.fontawesome.com/c239d89a06.js" crossorigin="anonymous"></script>      
@@ -46,6 +46,12 @@
                     <th scope="col">
                         @Html.DisplayNameFor(model => model.Estado)
                     </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Imagen)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.tipoHabitacion)
+                    </th>
                     <th></th>
             </tr>
         </thead>
@@ -57,13 +63,13 @@
         {
             <tr>
                 <th scope="row">
-                    
+                    @count
                 </th>
                 <td>
-                    @Html.DisplayFor(modelItem => item.numero)
+                    H - @Html.DisplayFor(modelItem => item.numero)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.precio)
+                    S/. @Html.DisplayFor(modelItem => item.precio)
                 </td>
                 <td>
                    @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.descripcion))
@@ -75,13 +81,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Estado)
                 </td>
+                <td>
+                    <img class="img-responsive" width="200" height="150"
+                       src="@item.Imagen" alt="@item.Imagen"  />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipoHabitacion)
+                </td>
                 
                 
                 <th scope="row">
                     <a asp-action="Editar" asp-route-id="@item.id" class="btn btn-outline-success" role="button">Editar</a> 
                 </th>
             </tr>
-            
+            count++;
         }        
        
     

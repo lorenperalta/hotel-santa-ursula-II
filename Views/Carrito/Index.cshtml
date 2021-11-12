@@ -2,7 +2,8 @@
 @{
     ViewData["Title"] = "Carrito de Compras";
     IEnumerable<hotel_santa_ursula_II.Models.Carrito> listProformas = new List<Carrito>();
-    
+    int total = 0;        
+    var contar = 0;
 }
 
 <head>  
@@ -29,21 +30,29 @@
     <table class="table table-hover">
     <thead class="thead-dark">
              <tr>
+                 <th scope="col">
+                    @Html.DisplayNameFor(model => model.habitacion.Imagen)
+                </th>
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.habitacion.numero)
-                </th>
-               
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.Quantity)
                 </th>
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.Precio)
                 </th>
                 <th scope="col">
+                    @Html.DisplayNameFor(model => model.fechar)
+                </th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.C_noches)
                 </th>
                 <th scope="col" >
-                    <p ></p>
+                    <p>Subtotal</p>
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th scope="col" >
+                    <p></p>
                 </th>
         </tr>
     </thead>
@@ -52,18 +61,33 @@
         //@if (item.Email == @User.Identity.Name)
         //{
             <tr>
-          
             <td>
-                @Html.DisplayFor(modelItem => item.habitacion.numero)
+                <img class="img-responsive" width="200" height="150"
+                       src="@item.habitacion.Imagen" alt="@item.habitacion.Imagen"  />
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
+                H - @Html.DisplayFor(modelItem => item.habitacion.numero)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Precio)
+                S/. @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                    <script>
+                        var f = new Date();
+                        document.write(f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear());
+                    </script>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.C_noches)
+            </td>
+            <td>
+                @{
+                    total = item.Precio * item.C_noches;                
+                }
+                <p>S/. @total</p>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
             <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-outline-success">Editar</a>
@@ -74,11 +98,7 @@
     </tbody>    
 </table>
 
-@{
-        int total = 0;
-        
-        var contar = 0;
-      }
+
       @foreach (var item in Model){
          <tr>
             @{
@@ -110,7 +130,8 @@
            <h5>total @total1</h5>           
     </div>-->
 
-    <a class="btn btn-primary button" asp-controller="Pago" asp-action="Create" asp-route-monto="@total1">Pagar</a><p align="center" style="font-size: 200%;">Total a Pagar S/. @total1</p>
+    <a class="btn btn-primary button" asp-controller="Pago" asp-action="Create" asp-route-monto="@total1">Pagar</a>
+    <p align="center" style="font-size: 200%;">Total a Pagar S/. @total1</p>
 
       
 </body>

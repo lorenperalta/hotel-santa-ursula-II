@@ -108,7 +108,7 @@ namespace hotel_santa_ursula_II.Controllers
 /*************************************** EDITAR HABITACION ******************************************/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(int id, [Bind("id,idtipo,numero,precio,descripcion,nivel,Estado,Imagen")] Models.Habitaciones Hab)
+        public async Task<IActionResult> Editar(int id, [Bind("id,idtipo,numero,precio,descripcion,nivel,Estado,Imagen,tipoHabitacion")] Models.Habitaciones Hab)
         {
             if (id != Hab.id)
             {

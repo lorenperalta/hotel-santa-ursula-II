@@ -27,9 +27,14 @@
         <form asp-controller="Habitaciones" asp-action="Registrar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row align-items-center">
-            <div class="form-group text-left col-sm">
+                
+            <div class="form-group text-left">
                 <label asp-for="tipoHabitacion" class="control-label"></label>
-                <input asp-for="tipoHabitacion" class="form-control rounded-pill">
+                <select asp-for="tipoHabitacion" class="form-control rounded-pill" aria-label="Default select example">
+                <option value="1">Simple</option>
+                <option value="3">Matrimonial</option>
+                <option value="4">Multiple</option>
+                </select>
                 <span asp-validation-for="tipoHabitacion" class="text-danger"></span>
             </div>
             <div class="form-group text-left col-sm">
@@ -58,7 +63,6 @@
             <div class="form-group text-left col-sm">
                 <label asp-for="descripcion" class="control-label"></label>
                 <textarea asp-for="descripcion" id="ckeditor" cols="30" rows="10" class="ckeditor" value=""></textarea>
-
                 <span asp-validation-for="descripcion" class="text-danger"></span>
             </div>
             </div>
@@ -66,7 +70,7 @@
             <div class="row align-items-center">           
             <div class="form-group text-left col-sm">
                 <label asp-for="Imagen" class="control-label"></label>
-                <input asp-for="Imagen" class="form-control rounded-pill">
+                <input asp-for="Imagen" class="form-control rounded-pill" value="https://drive.google.com/uc?export=download&id="> 
                 <span asp-validation-for="Imagen" class="text-danger"></span>
             </div>
 
