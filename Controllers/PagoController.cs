@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using hotel_santa_ursula_II.Data;
 using hotel_santa_ursula_II.Models;
 using Microsoft.AspNetCore.Identity;
+using OfficeOpenXml;
+using OfficeOpenXml.Table;
 
 namespace hotel_santa_ursula_II.Controllers
 {
@@ -94,6 +96,28 @@ namespace hotel_santa_ursula_II.Controllers
             ViewData["Message"] = "El pago se ha registrado";
             return View("Create");
         }
+
+        public IActionResult ExportarExcel()
+            {
+                string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                var pagos = _context.DataPago.AsNoTracking().ToList();
+                using (var libro = new ExcelPackage())
+                    {
+                        var worksheet = libro.Workbook.Worksheets.Add("Pagos");
+                        worksheet.Cells["A1"].LoadFromCollection(pagos, PrintHeaders: true);
+                        for (var col = 1; col < pagos.Count + 1; col++)
+                            {
+                                worksheet.Column(col).AutoFit();
+                            }
+        // Agregar formato de tabla
+        var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 1, fromCol: 1, toRow: pagos.Count + 1, toColumn: 2), "Pagos");
+        tabla.ShowHeader = true;
+        tabla.TableStyle = TableStyles.Light6;
+        tabla.ShowTotal = true;
+
+        return File(libro.GetAsByteArray(), excelContentType, "Pagos.xlsx");
+    }
+}
 
     }
 }

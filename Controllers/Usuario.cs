@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using hotel_santa_ursula_II.Data;
 using hotel_santa_ursula_II.Models;
+using OfficeOpenXml;
+using OfficeOpenXml.Table;
+
 namespace hotel_santa_ursula_II.Controllers
 {
     public class Usuario : Controller
@@ -122,5 +125,27 @@ namespace hotel_santa_ursula_II.Controllers
             }
             return RedirectToAction("Listar");
         }
+
+        public IActionResult ExportarExcel()
+            {
+                string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                var usuarios = _context.usuario.AsNoTracking().ToList();
+                using (var libro = new ExcelPackage())
+                    {
+                        var worksheet = libro.Workbook.Worksheets.Add("Usuarios");
+                        worksheet.Cells["A1"].LoadFromCollection(usuarios, PrintHeaders: true);
+                        for (var col = 1; col < usuarios.Count + 1; col++)
+                            {
+                                worksheet.Column(col).AutoFit();
+                            }
+        // Agregar formato de tabla
+        var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 1, fromCol: 1, toRow: usuarios.Count + 1, toColumn: 5), "Usuarios");
+        tabla.ShowHeader = true;
+        tabla.TableStyle = TableStyles.Light6;
+        tabla.ShowTotal = true;
+
+        return File(libro.GetAsByteArray(), excelContentType, "Usuarios.xlsx");
     }
+    }
+   }
 }
