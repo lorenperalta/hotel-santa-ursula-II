@@ -9,7 +9,7 @@ using hotel_santa_ursula_II.Data;
 using hotel_santa_ursula_II.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Dynamic;
-
+using Rotativa.AspNetCore;
 
 namespace hotel_santa_ursula_II.Controllers
 {
@@ -34,6 +34,25 @@ namespace hotel_santa_ursula_II.Controllers
                 Where(s => s.UserID.Equals(userID));
             
             return View(await carrito.ToListAsync());
+        }
+         public async Task<IActionResult> ContactPDF()
+        {
+            int a =10;
+            var norma = _context.DataPago.ToList();
+            foreach(var item in norma.ToList()){
+                a=item.Id;
+            }
+            var userID = _userManager.GetUserName(User);
+            var Impresion = from o in _context.DataDetallepedido select o;
+            Impresion = Impresion.
+                Include(p => p.Habitaciones  ).
+                Include(y=>y.pedido).
+                Include(y=>y.pedido.pago).
+                Where(s => s.pedido.pago.Id.Equals(a));
+           return new ViewAsPdf("ContactPDF", await Impresion.ToListAsync());
+            {
+
+            }
         }
         
         /****************************************************************************************************/

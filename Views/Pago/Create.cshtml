@@ -46,9 +46,16 @@
                 <input asp-for="MontoTotal" class="form-control rounded-pill" data-thousands="," data-decimal="." readonly />
                 <br>
                 <div class="form-group">
-                  <button type="submit" class="button">Pagar</button> 
+                  <button type="submit" class="button">Pagar</button><br><br><hr>
+                  
                 </div>
                 
             </form>
+            <form asp-controller="Carrito" asp-action="ContactPDF">
+                  <button type="submit" class="button">Pagar</button>
+
+                  </form>
+                  
+            </div>
         </div>
     </body>
