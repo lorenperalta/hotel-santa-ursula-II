@@ -37,13 +37,18 @@ namespace hotel_santa_ursula_II.Controllers
         }
          public async Task<IActionResult> ContactPDF()
         {
+            int a =10;
+            var norma = _context.DataPago.ToList();
+            foreach(var item in norma.ToList()){
+                a=item.Id;
+            }
             var userID = _userManager.GetUserName(User);
             var Impresion = from o in _context.DataDetallepedido select o;
             Impresion = Impresion.
                 Include(p => p.Habitaciones  ).
                 Include(y=>y.pedido).
                 Include(y=>y.pedido.pago).
-                Where(s => s.pedido.pago.Id.Equals(11));
+                Where(s => s.pedido.pago.Id.Equals(a));
            return new ViewAsPdf("ContactPDF", await Impresion.ToListAsync());
             {
 
