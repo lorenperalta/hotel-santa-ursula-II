@@ -20,6 +20,6 @@ namespace hotel_santa_ursula_II.Models
         public int Precio { get; set; }
         public Pedido pedido {get; set;}
 
-        
+        public DateTime fechar{get; set;}= DateTime.Now;
     }
 }

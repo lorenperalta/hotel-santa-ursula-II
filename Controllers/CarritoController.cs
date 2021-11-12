@@ -13,6 +13,7 @@ using Rotativa.AspNetCore;
 
 namespace hotel_santa_ursula_II.Controllers
 {
+    
     public class CarritoController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -40,12 +41,12 @@ namespace hotel_santa_ursula_II.Controllers
             
             return View(await carrito.ToListAsync());
         }
-       /*  public async Task<IActionResult> ContactPDF()
+        public async Task<IActionResult> ContactPDF()
         {
             int a =10;
             var norma = _context.DataPago.ToList();
             foreach(var item in norma.ToList()){
-                a=item.Id;
+                a=Convert.ToInt32(item.Id);
             }
             var userID = _userManager.GetUserName(User);
             var Impresion = from o in _context.DataDetallepedido select o;
@@ -58,7 +59,7 @@ namespace hotel_santa_ursula_II.Controllers
             {
 
             }
-        }*/
+        }
         
         /****************************************************************************************************/
 

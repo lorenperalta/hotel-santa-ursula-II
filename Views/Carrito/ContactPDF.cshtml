@@ -19,26 +19,53 @@
     usuario=item.pedido.UserID;
     totalf=item.pedido.pago.MontoTotal;
  }
- <h5> @usuario</h5>
- <h5> @fecha</h5>
- <h5> @totalf</h5>
+ 
+ 
 <div class="container">
+    <center>
+        <div class="col-sm-4">
+            <img width="80%" src="~/images/nombre.png" />
+            <br>
+            <br>
+        </div>        
+   </center>
+
+    <div class="col-sm-8 text-center">
+            <h1>COMPROBANTE DE PAGO</h1>
+            <br>
+            <br>
+        </div>
+<h5>Usuario: @usuario</h5>
+<h5> Fecha: 
+<script>
+    var f = new Date();
+    document.write(f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear());
+</script>
+ </h5>
     <table class="table table-hover">
     <thead class="thead-dark">
              <tr>
+                 <th scope="col">
+                    @Html.DisplayNameFor(model => model.Habitaciones.Imagen)
+                </th>
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.Habitaciones.numero)
                 </th>
                
+                
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Cantidad)
+                    Noche:
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Precio)
+                    Fecha:
                 </th>
                 <th scope="col">
-                    Precio total
+                     @Html.DisplayNameFor(model => model.Cantidad)
                 </th>
+                <th scope="col">
+                    Subtotal
+                </th>
+                
                 
         </tr>
     </thead>
@@ -49,16 +76,23 @@
         //@if (item.Email == @User.Identity.Name)
         //{
             <tr>
-          
+          <td>
+              <img class="img-responsive" width="200" height="150"
+                       src="@item.Habitaciones.Imagen" alt="@item.Habitaciones.Imagen"  />
+          </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Habitaciones.numero)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cantidad)
+                @Html.DisplayFor(modelItem => item.Habitaciones.precio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Precio)
+                @Html.DisplayFor(modelItem => item.fechar)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            
             
             <td>
                  @total1
@@ -68,7 +102,7 @@
 	}
     </tbody>    
 </table>
-
+ <p align="center" style="font-size: 200%;">Total S/. @totalf</p>
 
 
 

@@ -26,6 +26,6 @@ namespace hotel_santa_ursula_II.Models
         public String Status { get; set; } = "PENDIENTE";
         [Display(Name = "Fecha de Reserva: ")]
         
-        public DateTime fechar{get; set;}
+        public DateTime fechar{get; set;}= DateTime.Now;
     }
 }
