@@ -1,0 +1,99 @@
+@model IEnumerable<hotel_santa_ursula_II.Models.Carrito>
+
+@{
+    ViewData["Title"] = "Documento";
+}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DOCUMENTO</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    
+
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="~/images/nombre.png" />
+        </div>
+        
+    </div>
+    <div class="col-sm-8 text-center">
+            <h1>RECIBO DE PAGO</h1>
+        </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.habitacion.numero)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.habitacion.precio)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.C_noches)
+                </th>
+              
+                
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+               <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.habitacion.numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.C_noches)
+            </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    @{
+          Decimal total = 0;
+
+         var contar = 0;
+      }
+      @foreach (var item in Model){
+         <tr>
+            @{
+               total = total + item.Precio*item.Quantity;
+               contar++;
+            }
+         </tr>
+      }
+
+
+
+<div class="container">
+         <h4>Total: S/ @total </h4> 
+           
+            </div>
+           
+            </div>
+    </section>
+
+
+</body>
+</html>
